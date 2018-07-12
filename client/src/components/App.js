@@ -29,11 +29,9 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to RCL</h1>
-          <p className="App-Subtitle"> RCL is an open React Component Library</p>
+          <p className="App-Subtitle"> Open React Component Library</p>
           
           <Link to="/">Home</Link> 
-          {!api.isLoggedIn() && <Link to="/signup">Signup</Link> }
-          {!api.isLoggedIn() && <Link to="/login">Login</Link> }
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link> }
           {api.isLoggedIn() && <Link to="/search" onClick={(e) => this.handleLogoutClick(e)}>Search</Link> }
           {api.isLoggedIn() && <Link to="/host" onClick={(e) => this.handleLogoutClick(e)}>Hosted Components</Link> }

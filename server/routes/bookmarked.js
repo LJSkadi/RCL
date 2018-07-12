@@ -22,7 +22,7 @@ router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next
 
 //#region ADD A NEW BOOKMARK
 //POST /
-router.post('/:_id/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.post('/comp/:_id/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let _owner = req.user._id
   let compId = req.params._id;
   List.findOneAndUpdate({ _owner: req.user._id, kind: "BOOKMARK" }, { $push: { _components: compId } }, { new: true })
@@ -36,7 +36,7 @@ router.post('/:_id/', passport.authenticate("jwt", config.jwtSession), (req, res
 
 //#region REMOVE A BOOKMARK
 //DELETE /
-  router.delete('/:_id/delete', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  router.delete('/comp/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
     let compId = req.params._id;
     List.findOne({ _owner: req.user._id, kind : "BOOKMARK" })
     .populate('_components')

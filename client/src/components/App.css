@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #080808;
 }
 
 .App-logo {
@@ -35,3 +36,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.CardHeader .CardFooter{
+  background-color:  #3b3b3b;
+}
+
+.Card{
+  color:  #808080; 
+  display: flex;
+  justify-content: center;
+
+}
+

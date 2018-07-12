@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-2018-03-02",
+  "name": "RCL",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bcrypt": "^3.0.0"
+    "bcrypt": "^3.0.0",
+    "jquery": "^3.3.1"
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login';
 import Signup from './Signup';
+import api from '../api';
 
 class UserGreeting extends Component{
     constructor(props) {
@@ -14,22 +15,10 @@ class UserGreeting extends Component{
         const signed = this.props.signed;
         {if(signed===true){
             return
-            (
-            <div>
-            <h3>Please login</h3>
-            <Login />
-            <p>You don't have an account?</p>
-            <p>Create one</p>
-            <button>Sign up</button>
-            </div>
-            )
+            {!api.isLoggedIn() && <Login className="d-flex justify-content-center" />}
         }else{
-            return(
-            <div>
-            <Signup />
-            </div>
-            )
-
+            return
+            {!api.isLoggedIn() && <Signup className="d-flex justify-content-center"/>}
         }}
    }
 }

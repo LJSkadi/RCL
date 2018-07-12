@@ -23,6 +23,8 @@ class Countries extends Component {
       <div className="Countries">
         <h2>List of countries</h2>
         {this.state.countries.map((c, i) => <li key={i}>{c.name}</li>)}
+        ProfilePic: <br/>
+              <input type="file" onChange={(e)=>this.handleInputChange("pictureUrl", e)} /> <br/>
       </div>
     );
   }

@@ -12,16 +12,128 @@ const errHandler = err => {
 export default {
   service: service,
   
-  getCountries() {
+  getUser() {
     return service
-      .get('/countries')
+      .get('/users/profile')
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  postCountries(data) {
+  editUser(data) {
     return service
-      .post('/countries', data)
+      .put('/users/profile')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteUser() {
+    return service
+      .delete('/users/profile')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getHostsList() {
+    return service
+      .get('/host/all')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addHostList(data) {
+    return service
+      .post('/host/add')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getHostList() {
+    return service
+      .get('/host')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteHostList() {
+    return service
+      .delete('/host/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getComponent() {
+    return service
+      .get('/host/comp/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addComponent(data) {
+    return service
+      .post('/host/comp/add')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  editComponent(data) {
+    return service
+      .put('/host/comp/edit/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteComponent() {
+    return service
+      .delete('/host/comp/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getBookmarksList() {
+    return service
+      .get('/bm/all')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addBookmarkList(data) {
+    return service
+      .post('/bm/add')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getBookmarkList() {
+    return service
+      .get('/bm')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteBookmarkList() {
+    return service
+      .delete('/bm/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addBookmark(data) {
+    return service
+      .post('/host/bm/comp/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteBookmark() {
+    return service
+      .delete('/host/bm/comp/:_id')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  searchComponents(data) {
+    return service
+      .get('/search', data)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -39,6 +151,19 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
+
+  // signup(userInfo) {
+  //   const formData = new FormData();
+  //   Object.keys(userInfo).forEach(key => formData.append(key, userInfo[key]));
+  //   return service
+  //     .post('/signup', formData, {
+  //       headers: {
+  //         'Content-Type': 'multipart/form-data',
+  //       },
+  //     })
+  //     .then(res => res.data)
+  //     .catch(errHandler);
+  // },
 
   login(email, password) {
     return service

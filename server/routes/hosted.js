@@ -23,7 +23,7 @@ router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next
 
 //#region ADD A NEW COMPONENT
 //POST /
-router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.post('/comp/add', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let _owner = req.user._id
   const { name, githubRepro, npmLink, hashtags, tutorial, description, hierarchicalStructure, numberOfLevels } = req.body;
   const newComp = new Component({
@@ -56,7 +56,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
 
 //#region DISPLAY ONE COMPONENT
 //GET /:id
-router.get('/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.get('/comp/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   List.findOne({ _owner: req.user._id, kind : "HOST" })
     .populate('_components')
     .then(hostList =>{
@@ -73,7 +73,7 @@ router.get('/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, 
 
 //#region EDIT A COMPONENT
 //PUT /
-router.put('/:_id/edit', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.put('/comp/edit/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let compId = req.params._id
   console.log("This is req.body", req.body)
   const { 
@@ -112,7 +112,7 @@ router.put('/:_id/edit', passport.authenticate("jwt", config.jwtSession), (req, 
 
 //#region DELETE A COMPONENT
 //DELETE /
-router.delete('/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+router.delete('/comp/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let compId = req.params._id;
   List.findOne({ _owner: req.user._id, kind : "HOST" })
   .populate('_components')

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import api from '../api';
+import {
+  Col, Card, CardImg, CardText, CardBody,
+  CardHeader, CardFooter, CardSubtitle, CardLink,
+  InputGroup, InputGroupAddon, InputGroupText,
+  FormGroup, FormFeedback, Input, Button
+} from 'reactstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -13,7 +19,7 @@ class Login extends Component {
   handleInputChange(stateFieldName, event) {
     let newState = {}
     newState[stateFieldName] = event.target.value
-  
+
     this.setState(newState)
   }
 
@@ -29,18 +35,50 @@ class Login extends Component {
       })
   }
 
-  render() {   
+  render() {
     return (
-      <div className="Login">
-        <h2>Login</h2>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => {this.handleInputChange("email", e)}} /> <br/>
-          Password: <input type="password" value={this.state.password} onChange={(e) => {this.handleInputChange("password", e)}}  /> <br/>
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
-        </form>
-      </div>
+      <Col className="d-flex justify-content-center">
+        <Card className="Card" style={{ width: '20rem' }} >
+          <CardHeader className="CardHeader" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>Login</CardHeader>
+          <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
+            <CardText className="text-center">
+              <form>
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>Email</InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    type="text"
+                    style={{ backgroundColor: '#3b3b3b' }}
+                    value={this.state.email}
+                    onChange={(e) => { this.handleInputChange("email", e) }} />
+                </InputGroup>
+                <br />
+
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>Password</InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    type="password"
+                    style={{ backgroundColor: '#3b3b3b' }}
+                    value={this.state.password}
+                    onChange={(e) => { this.handleInputChange("password", e) }} />
+                </InputGroup>
+                <br />
+              </form>
+            </CardText>
+            <Button onClick={(e) => this.handleClick(e)}>Signup!</Button>
+          </CardBody>
+          <CardFooter
+            className="CardFooter text-muted"
+            style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>You don't have an account?<br />
+            <CardLink href="/signup">Sign up!</CardLink>
+          </CardFooter>
+        </Card>
+      </Col>
     );
-  }
+  };
 }
 
 export default Login;

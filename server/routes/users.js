@@ -11,22 +11,6 @@ const uploadCloud = require('../configs/cloudinary.js');
 // // Bcrypt to encrypt passwords
 const bcryptSalt = 10;
 
-//#region DISPLAY 
-//GET /Profile
-router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-  User.findById(req.user._id)
-  .populate({ path: '_listHost', populate: { path: '_components'}})
-  .populate({ path: '_listBookmark', populate: { path: '_components'}})
-    .then((user) => {
-      res.json({
-        success: true,
-        user
-      });
-    })
-    .catch(err => next(err));
-});
-//#endregion
-
 //#region DISPLAY PROFILE
 //GET /Profile
 router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
