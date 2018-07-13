@@ -49,7 +49,7 @@ class Login extends Component {
                   </InputGroupAddon>
                   <Input
                     type="text"
-                    style={{ backgroundColor: '#3b3b3b' }}
+                    style={{ backgroundColor: '#3b3b3b', color: 'white' }}
                     value={this.state.email}
                     onChange={(e) => { this.handleInputChange("email", e) }} />
                 </InputGroup>
@@ -61,14 +61,14 @@ class Login extends Component {
                   </InputGroupAddon>
                   <Input
                     type="password"
-                    style={{ backgroundColor: '#3b3b3b' }}
+                    style={{ backgroundColor: '#3b3b3b', color: 'white' }}
                     value={this.state.password}
                     onChange={(e) => { this.handleInputChange("password", e) }} />
                 </InputGroup>
                 <br />
               </form>
             </CardText>
-            <Button onClick={(e) => this.handleClick(e)}>Signup!</Button>
+            <Button onClick={(e) => this.handleClick(e)}>Login</Button>
           </CardBody>
           <CardFooter
             className="CardFooter text-muted"

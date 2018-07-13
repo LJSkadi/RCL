@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import UserGreeting from './UserGreeting';
+import Login from './Login';
+import Signup from './Signup';
+import Welcome from './Welcome';
+import api from '../api';
 
 class Home extends Component {
-   constructor(props) {
-     super(props)
-     this.state = {
-       signuped : true
-     }
-   }
 
   render() {                
     return (
       <div className="Home">
-        <h2>Welcome Developer!</h2>
-          <UserGreeting signed={this.props.signuped} />
+          {!api.isLoggedIn() && <Login className="d-flex justify-content-center" />}
+          {api.isLoggedIn() && <Welcome className="d-flex justify-content-center" />}
       </div>
     );
   }

@@ -25,18 +25,23 @@ router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next
 //POST /
 router.post('/comp/add', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
   let _owner = req.user._id
-  const { name, githubRepro, npmLink, hashtags, tutorial, description, hierarchicalStructure, numberOfLevels } = req.body;
+  const { 
+    name, 
+    githubRepro, 
+    npmLink, 
+    docLink, hashtags, tutorial, description, hierarchicalStructure, numberOfLevels } = req.body;
   const newComp = new Component({
     _owner,
     //_collaborators,
     name, 
     githubRepro, 
     npmLink, 
+    docLink,
     hashtags, 
-    tutorial, 
+    //tutorial, 
     description, 
-    hierarchicalStructure,
-    numberOfLevels
+    //hierarchicalStructure,
+    //numberOfLevels
   });
 
   newComp.save()
@@ -80,6 +85,7 @@ router.put('/comp/edit/:_id', passport.authenticate("jwt", config.jwtSession), (
     name, 
     githubRepro, 
     npmLink, 
+    docLink,
     hashtags,
     tutorial, 
     description, 
@@ -93,7 +99,8 @@ router.put('/comp/edit/:_id', passport.authenticate("jwt", config.jwtSession), (
     Component.findByIdAndUpdate( compId, {
     name, 
     githubRepro, 
-    npmLink, 
+    npmLink,
+    docLink, 
     hashtags, 
     tutorial, 
     description, 

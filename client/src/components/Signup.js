@@ -16,11 +16,14 @@ class Signup extends Component {
       name: "",
       password: "",
     }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(stateFieldName, event) {
     let newState = {}
-    newState[stateFieldName] = event.target.value
+    newState[stateFieldName] = event.target.value;
     this.setState(newState)
   }
 
@@ -53,47 +56,54 @@ class Signup extends Component {
               <form>
                   <FormGroup>
                   <Input valid
-                    type="text"
-                    style={{ backgroundColor: '#3b3b3b' }}
+                    type = "text"
+                    name = "email"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
                     placeholder="Email"
-                    value={this.state.email}
+                    value = {this.props.email}
                     onChange={(e) => { this.handleInputChange("email", e) }} />
-                    <FormFeedback valid>This email is valid</FormFeedback>
-                    <FormFeedback invalid>This email is already registered</FormFeedback>
+                    <FormFeedback   
+                      style={{color:'#25dbff', borderColor:'#25dbff'}} 
+                      valid>This email is valid</FormFeedback>
+                    <FormFeedback 
+                      invalid>This email is already registered</FormFeedback>
                 </FormGroup>
                 <br />
                 <FormGroup>
                   <Input valid
-                    type="text"
-                    style={{ backgroundColor: '#3b3b3b' }}
-                    placeholder="Username"
-                    value={this.state.name}
-                    onChange={(e) => { this.handleInputChange("name", e) }} />
+                    type = "text"
+                    name = "name"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
+                    placeholder = "Username"
+                    value = {this.props.name}
+                    onChange = {(e) => { this.handleInputChange("name", e) }} />
                     <FormFeedback valid>This username is available</FormFeedback>
                     <FormFeedback invalid>This username is already taken</FormFeedback>
                 </FormGroup>
                 <br />
                   <Input
-                    type="password"
-                    style={{ backgroundColor: '#3b3b3b' }}
-                    placeholder="Password"
-                    value={this.state.password}
+                    type = "password"
+                    name = "password"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
+                    placeholder = "Password"
+                    value = {this.props.password}
                     onChange={(e) => { this.handleInputChange("password", e) }} />
                 <br />
                 <FormGroup>
                   <Input valid
-                    type="text"
-                    style={{ backgroundColor: '#3b3b3b' }}
-                    placeholder="Link to your githubProfile"
-                    value={this.state.github}
-                    onChange={(e) => { this.handleInputChange("github", e) }} />
+                    type = "url"
+                    name = "github"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
+                    placeholder = "Link to your githubProfile"
+                    value = {this.props.github}
+                    onChange = {(e) => { this.handleInputChange("github", e) }} />
                     <FormFeedback valid>This githubProfile is not registered yet</FormFeedback>
                     <FormFeedback invalid>This githubProfile is already registered!</FormFeedback>
                     </FormGroup>
                 <br />
               </form>
             </CardText>
-            <Button onClick={(e) => this.handleClick(e)}>Signup!</Button>
+            <Button onClick={this.handleClick}>Signup!</Button>
           </CardBody>
           <CardFooter className="CardFooter text-muted" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>You have already an account?<br />
             <CardLink href="/login">Login</CardLink>

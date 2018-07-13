@@ -3,9 +3,12 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Home from './Home';
 import Countries from './Countries';
 import AddCountry from './AddCountry';
-import Secret from './Secret';
 import Login from './Login';
 import Signup from './Signup';
+import Profile from './Profile';
+import Search from './Search';
+import Host from './Host-view';
+import Bookmark from './Bookmark-view';
 import api from '../api';
 import logo from '../logo.svg';
 import './App.css';
@@ -36,7 +39,6 @@ class App extends Component {
           {api.isLoggedIn() && <Link to="/search" onClick={(e) => this.handleLogoutClick(e)}>Search</Link> }
           {api.isLoggedIn() && <Link to="/host" onClick={(e) => this.handleLogoutClick(e)}>Hosted Components</Link> }
           {api.isLoggedIn() && <Link to="/bm" onClick={(e) => this.handleLogoutClick(e)}>Bookmarks</Link> }
-          <Link to="/secret">Secret</Link> 
         </header>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -44,7 +46,10 @@ class App extends Component {
           <Route path="/add-country" component={AddCountry} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/secret" component={Secret} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/host" component={Host} />
+          <Route path="/bm" component={Bookmark} />
+          <Route path="/search" component={Search} />
           <Route render={() => <h2>404</h2>} />
         </Switch>        
       </div>
