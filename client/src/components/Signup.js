@@ -15,20 +15,25 @@ class Signup extends Component {
       email: "",
       name: "",
       password: "",
+      pictureUrl: "",
+      github: ""
     }
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
+    //this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(stateFieldName, event) {
     let newState = {}
     newState[stateFieldName] = event.target.value;
+    // console.log("This is the newState", newState)
     this.setState(newState)
   }
 
   handleClick(e) {
     e.preventDefault()
+    console.log("stateeee ",this.state)
+
     let data = {
       email: this.state.email,
       name: this.state.name,
@@ -36,6 +41,7 @@ class Signup extends Component {
       pictureUrl: this.state.pictureUrl,
       github: this.state.github
     }
+    console.log(data)
     api.signup(data)
       .then(result => {
         console.log('SUCCESS!')
@@ -101,9 +107,9 @@ class Signup extends Component {
                     <FormFeedback invalid>This githubProfile is already registered!</FormFeedback>
                     </FormGroup>
                 <br />
+            <button onClick={this.handleClick}>Signup!</button>
               </form>
             </CardText>
-            <Button onClick={this.handleClick}>Signup!</Button>
           </CardBody>
           <CardFooter className="CardFooter text-muted" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>You have already an account?<br />
             <CardLink href="/login">Login</CardLink>
