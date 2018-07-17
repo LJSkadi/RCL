@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import api from '../api';
-import bootstrap from 'bootstrap';
 import {
-  Col, Card, CardImg, CardText, CardBody,
-  CardHeader, CardFooter, CardSubtitle, CardLink,
-  InputGroup, InputGroupAddon, InputGroupText, 
+  Col, Card, CardText, CardBody,
+  CardHeader, CardFooter, CardLink,
   FormGroup, FormFeedback, Input, Button
 } from 'reactstrap';
 
@@ -26,14 +24,11 @@ class Signup extends Component {
   handleInputChange(stateFieldName, event) {
     let newState = {}
     newState[stateFieldName] = event.target.value;
-    // console.log("This is the newState", newState)
     this.setState(newState)
   }
 
   handleClick(e) {
     e.preventDefault()
-    console.log("stateeee ",this.state)
-
     let data = {
       email: this.state.email,
       name: this.state.name,
@@ -107,7 +102,7 @@ class Signup extends Component {
                     <FormFeedback invalid>This githubProfile is already registered!</FormFeedback>
                     </FormGroup>
                 <br />
-            <button onClick={this.handleClick}>Signup!</button>
+            <Button onClick={this.handleClick}>Signup!</Button>
               </form>
             </CardText>
           </CardBody>

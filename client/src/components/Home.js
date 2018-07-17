@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import {withRouter} from "react-router-dom";
 import Login from './Login';
-import Signup from './Signup';
 import Welcome from './Welcome';
 import api from '../api';
+
 
 class Home extends Component {
 
@@ -16,4 +17,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

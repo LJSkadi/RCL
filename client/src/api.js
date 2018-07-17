@@ -61,30 +61,51 @@ export default {
       .catch(errHandler);
   },
 
-  getComponent() {
+  getComponents() {
     return service
-      .get('/host/comp/:_id')
+      .get('/search/all')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  searchComponents(data) {
+    return service
+      .get('/search', data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getComponent(_id) {
+    return service
+      .get(`/comp/${_id}`)
       .then(res => res.data)
       .catch(errHandler);
   },
 
   addComponent(data) {
     return service
-      .post('/host/comp/add')
+      .post('/comp/add')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  npmInfo(name) {
+    return service
+      .get(`/comp/update/${name}`)
       .then(res => res.data)
       .catch(errHandler);
   },
 
   editComponent(data) {
     return service
-      .put('/host/comp/edit/:_id')
+      .put('/comp/edit/:_id')
       .then(res => res.data)
       .catch(errHandler);
   },
 
   deleteComponent() {
     return service
-      .delete('/host/comp/:_id')
+      .delete('/comp/:_id')
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -119,21 +140,14 @@ export default {
 
   addBookmark(data) {
     return service
-      .post('/host/bm/comp/:_id')
+      .post('/bm/comp/:_id')
       .then(res => res.data)
       .catch(errHandler);
   },
 
   deleteBookmark() {
     return service
-      .delete('/host/bm/comp/:_id')
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  searchComponents(data) {
-    return service
-      .get('/search', data)
+      .delete('/bm/comp/:_id')
       .then(res => res.data)
       .catch(errHandler);
   },

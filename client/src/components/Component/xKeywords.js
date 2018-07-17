@@ -1,46 +1,20 @@
 import React, { Component } from 'react';
-import api from '../api';
 import {
-    Col, Card, CardImg, CardText, CardBody,
-    CardHeader, CardFooter, CardSubtitle, CardLink,
-    InputGroup, InputGroupAddon, InputGroupText,
-    FormGroup, FormFeedback, Input, Button
-} from 'reactstrap';
+    InputGroup, InputGroupAddon, InputGroupText, Input, Button
+  } from 'reactstrap';
 
-class ComponentAdd extends Component {
+
+
+class License extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            name: "",
-            githubRepo: "",
-            npmLink: "",
-            hashtags: [],
-            tutorial: [],
-            description: [],
-        }
-    }
-
-    handleInputChange(stateFieldName, event) {
-        let newState = {}
-        newState[stateFieldName] = event.target.value
-
-        this.setState(newState)
-    }
-
-    handleClick(e) {
-        e.preventDefault()
-        api.login(this.state.email, this.state.password)
-            .then(result => {
-                console.log('SUCCESS!')
-                this.props.history.push("/") // Redirect to the home page
-            })
-            .catch(err => {
-                console.log('ERROR')
-            })
+        };
     }
 
     render() {
         return (
+            <div>
             <Col className="d-flex justify-content-center">
                 <Form>
                     <FormGroup row>
@@ -50,14 +24,28 @@ class ComponentAdd extends Component {
                                 type="text"
                                 name="name"
                                 id="name"
-                                placeholder="ComponentName"
-                                style={{ backgroundColor: '#3b3b3b' }}
-                                value={this.state.name}
-                                onChange={(e) => { this.handleInputChange("name", e) }}
+                                placeholder="License"
+                                style={{ backgroundColor: '#3b3b3b',
+                                         color: 'white',
+                                         margin: '0 auto',
+                                         maxWidth: 800 }}
+                                value={this.props.license}
                             />
-
                         </Col>
                     </FormGroup>
+                    <Button onSubmit={(e) => { this.handleInput("license", e) }}>Submit</Button>
+                </Form>
+            </Col>
+            </div>
+        )
+    }
+}
+
+export default License;
+
+
+
+
                     <FormGroup row>
                         <Label for="github-Repo" sm={2}>github-Repo</Label>
                         <Col sm={10}>
@@ -100,22 +88,7 @@ class ComponentAdd extends Component {
                             />
                         </Col>
                     </FormGroup>
-                    <FormGroup row>
-                        <Label for="description" sm={2}>Description</Label>
-                        <Col sm={10}>
-                            <Input
-                                type="textarea"
-                                name="description"
-                                id="description"
-                                style={{ backgroundColor: '#3b3b3b' }}
-                                value={this.state.description}
-                                onChange={(e) => { this.handleInputChange("description", e) }}
-                            />
-                            <FormText color="muted">
-                                Please tell us a little bit more about your react component.
-                            </FormText>
-                        </Col>
-                    </FormGroup>
+                   
                     <FormGroup tag="fieldset" row>
                         <legend className="col-form-label col-sm-2">Does a tutorial exists?</legend>
                         <Col sm={10}>
@@ -134,11 +107,3 @@ class ComponentAdd extends Component {
                         </Col>
                     </FormGroup>
                     <Button>Submit</Button>
-                </Form>
-            </Col>
-            );
-        }
-    }
-            
-            
-export default ComponentAdd;

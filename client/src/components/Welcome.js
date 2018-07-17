@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Search from './Search';
-import api from '../api';
 
 class Welcome extends Component {
 

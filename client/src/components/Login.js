@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import {withRouter} from "react-router-dom";
 import api from '../api';
 import {
-  Col, Card, CardImg, CardText, CardBody,
-  CardHeader, CardFooter, CardSubtitle, CardLink,
-  InputGroup, InputGroupAddon, InputGroupText,
-  FormGroup, FormFeedback, Input, Button
+  Col, Card, CardText, CardBody,
+  CardHeader, CardFooter, CardLink,
+  InputGroup, InputGroupAddon, InputGroupText, Input, Button
 } from 'reactstrap';
+
 
 class Login extends Component {
   constructor(props) {
@@ -13,25 +14,28 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      history: "",
     }
+    this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(stateFieldName, event) {
     let newState = {}
     newState[stateFieldName] = event.target.value
-
     this.setState(newState)
   }
 
   handleClick(e) {
     e.preventDefault()
+    console.log(this.state)
     api.login(this.state.email, this.state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/")  // Redirect to the home page
       })
       .catch(err => {
-        console.log('ERROR')
+        console.log('ERROR', err)
       })
   }
 
@@ -48,10 +52,11 @@ class Login extends Component {
                     <InputGroupText>Email</InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    type="text"
-                    style={{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    value={this.state.email}
-                    onChange={(e) => { this.handleInputChange("email", e) }} />
+                    type = "text"
+                    name = "email"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
+                    value = {this.state.email}
+                    onChange = {(e) => { this.handleInputChange("email", e) }} />
                 </InputGroup>
                 <br />
 
@@ -60,15 +65,16 @@ class Login extends Component {
                     <InputGroupText>Password</InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    type="password"
-                    style={{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    value={this.state.password}
-                    onChange={(e) => { this.handleInputChange("password", e) }} />
+                    type = "password"
+                    name = "password"
+                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
+                    value = {this.state.password}
+                    onChange = {(e) => { this.handleInputChange("password", e) }} />
                 </InputGroup>
                 <br />
               </form>
             </CardText>
-            <Button onClick={(e) => this.handleClick(e)}>Login</Button>
+            <Button onClick={this.handleClick}>Login</Button>
           </CardBody>
           <CardFooter
             className="CardFooter text-muted"
@@ -81,4 +87,4 @@ class Login extends Component {
   };
 }
 
-export default Login;
+export default withRouter(Login);

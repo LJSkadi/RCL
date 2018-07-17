@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import api from '../api';
 import {
     Col, Card, CardImg, CardText, CardBody,
-    CardHeader, CardFooter, CardSubtitle, CardLink,
-    InputGroup, InputGroupAddon, InputGroupText, 
-    FormGroup, Form, FormFeedback, Input, Button, Label
+    CardHeader, FormGroup, FormFeedback, Input, Button
 } from 'reactstrap';
 
 class ProfileEdit extends Component {
