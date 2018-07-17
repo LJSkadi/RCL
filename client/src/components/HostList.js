@@ -24,7 +24,7 @@ api.getHostList()
     return (
       <div>
             <h2>Hosted Components</h2>
-            <ComponentList components = {this.state.components} address={"/host"}/>
+            <ComponentList components = {this.state.components}/>
             </div>
     );
   }

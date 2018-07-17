@@ -9,6 +9,7 @@
   "dependencies": {
     "api-npm": "^1.0.0",
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.0",
     "body-parser": "~1.18.2",
     "cloudinary": "^1.10.0",
     "cookie-parser": "~1.4.3",

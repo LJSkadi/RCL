@@ -10,7 +10,8 @@ class NameInsert extends Component {
     render() {
         return (
                     <FormGroup row>
-                        <Label for="name" sm={2}>Under which name is the module or component published on NPM?</Label>
+                        {this.props.onNpm===true && <Label for="name" sm={2}>Under which name is the module or component published on NPM?</Label>}
+                        {this.props.onNpm===false && <Label for="name" sm={2}>What is the name of the module or component?</Label>}
                         <Col sm={10}>
                             <Input
                                 type="text"
@@ -23,7 +24,7 @@ class NameInsert extends Component {
                                          maxWidth: 800 }}
                             />
                         </Col>
-                        <Button onSubmit={(e) => { this.props.handleInput("name", e) }}>Submit</Button>
+                        <Button color="success" onSubmit={(e) => { this.props.handleName("name", e) }}>Submit Name</Button>
                     </FormGroup>
         )
     }
