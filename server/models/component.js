@@ -6,10 +6,10 @@ const componentSchema = new mongoose.Schema({
   name: { type: String, required: [true, 'A name is required'] },
   _owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   //_collaborators: [{ type: [Schema.Types.ObjectId], ref: 'User' }],
-  githubRepo: { type: String, required: [true, 'A github-Repository is required'] },
+  repo: { type: String, required: [true, 'A github-Repository is required'] },
   npmLink: { type: String, default: "" }, //I can change this to an embedded NPM-Info field anytime
   docLink: { type: String, default: "" }, //I can change this to an embedded NPM-Info field anytime
-  hashtags: { type: [String], required: [true, 'Please give us at least one #hashtag'] },
+  hashtags: { type: [String], required: [true, 'Please give us at least one keyword'] },
   //tutorial:{
   //   type: String,
   //   default: []
@@ -18,6 +18,7 @@ const componentSchema = new mongoose.Schema({
     type: String,
     default: []
   },
+  license: String,
   //hierarchicalStructure: String,
   //numberOfLevels: {
   //  type: Number,
@@ -28,7 +29,6 @@ const componentSchema = new mongoose.Schema({
       createdAt: 'created_at',
       updatedAt: 'updated_at'
     }
-
   });
 
 const Component = mongoose.model('Component', componentSchema);

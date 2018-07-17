@@ -16,6 +16,7 @@ var usersRoutes = require('./routes/users');
 var hostedRoutes = require('./routes/hosted');
 var bookmarkedRoutes = require('./routes/bookmarked');
 var searchRoutes = require('./routes/search');
+var compRoutes = require('./routes/comp');
 
 require('./configs/database');
 require('./configs/cloudinary');
@@ -77,6 +78,7 @@ app.use('/api/search', searchRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/host', hostedRoutes);
 app.use('/api/bm', bookmarkedRoutes);
+app.use('/api/comp', compRoutes);
 
 
 

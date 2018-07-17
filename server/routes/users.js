@@ -19,7 +19,6 @@ router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, re
   .populate({ path: '_listBookmark', populate: { path: '_components'}})
     .then((user) => {
       res.json({
-        success: true,
         user
       });
     })
@@ -42,7 +41,6 @@ router.put('/profile', [passport.authenticate("jwt", config.jwtSession), uploadC
       User.findByIdAndUpdate(userId, { salt: salt, password: hashed })
         .then(user => {
           res.json({
-            success: true,
             user
           });
         })
@@ -52,7 +50,6 @@ router.put('/profile', [passport.authenticate("jwt", config.jwtSession), uploadC
   User.findByIdAndUpdate(userId, updateInformation, { new: true })
     .then(user => {
       res.json({
-        success: true,
         user
       });
     })
@@ -66,7 +63,6 @@ router.delete('/profile', passport.authenticate("jwt", config.jwtSession), (req,
   User.findByIdAndRemove(req.user._id)
     .then(() => {
       res.json({
-        success: true,
         user
       });
     })
