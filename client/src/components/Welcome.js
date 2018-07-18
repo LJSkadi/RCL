@@ -4,7 +4,7 @@ import './App.css';
 import {
   Col, Card, CardText, CardBody,
   CardHeader, CardImg, CardLink,
-  FormGroup, FormFeedback, Input, Button
+  Button
 } from 'reactstrap';
 
 class Welcome extends Component {

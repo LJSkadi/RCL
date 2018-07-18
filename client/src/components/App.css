@@ -69,3 +69,8 @@ h1 {
 .compInput{
   color: #00d8ff;
 }
+
+.member-avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 25em; }

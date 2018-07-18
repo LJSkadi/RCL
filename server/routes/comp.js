@@ -63,6 +63,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
     console.log("This is req.params.id", req.params.id);
     let compId = req.params.id;
      Component.findById(compId)
+     .populate("_owner")
         .then(component => {
             console.log("This is component", component)
           res.json({

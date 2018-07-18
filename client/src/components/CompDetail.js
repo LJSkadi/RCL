@@ -1,7 +1,7 @@
 import React from 'react';
 import api from '../api';
 import { Link } from 'react-router-dom';
-import { Col, Card, CardHeader, CardBody, CardText, ListGroup, ListGroupItem, InputGroupAddon, Button } from 'reactstrap';
+import { Col, Card, CardImg, CardHeader, CardBody, CardText, Button } from 'reactstrap';
 
 class CompDetail extends React.Component {
     constructor(props) {
@@ -15,7 +15,8 @@ class CompDetail extends React.Component {
             hashtags: [], //Array
             tutorial: [],   //Array
             description: [], //Array
-            license: ""
+            license: "",
+            image: ""
         }
         this.handleDeleteClick = this.handleDeleteClick.bind(this)
         this.handleBMClick = this.handleBMClick.bind(this)
@@ -24,11 +25,10 @@ class CompDetail extends React.Component {
 
 
     componentDidMount() {
-        console.log("Comp did mount", this.props.match.params.id)
         let compId = this.props.match.params.id;
         api.getComponent(compId)
             .then(res => {
-                console.log(res)
+                console.log(res.component._owner)
                 this.setState({
                     id: compId,
                     name: res.component.name,
@@ -37,7 +37,8 @@ class CompDetail extends React.Component {
                     hashtags: res.component.hashtags, //Array
                     tutorial: res.component.tutorial,   //Array
                     description: res.component.description, //Array
-                    license: res.component.license
+                    license: res.component.license,
+                    image: res.component._owner.pictureUrl,
                 })
                 api.getBookmarkList()
                     .then(res => {
@@ -58,7 +59,6 @@ class CompDetail extends React.Component {
         let compId = this.state.id;
         api.deleteComponent(compId)
             .then(res => {
-                console.log(res)
                 this.props.history.push("/host")  // Redirect to the home page
             })
             .catch(err => console.log(err))
@@ -71,17 +71,14 @@ class CompDetail extends React.Component {
                 this.setState({
                     bookmarked: !this.state.bookmarked
                 })
-                console.log(res)
                 this.props.history.push("/bm")  // Redirect to the home page
             })
             .catch(err => console.log(err))
     }
 
     handleBMDelete(compId, event) {
-        console.log("I'm in handleBMDelete", compId)
         api.deleteBookmark(compId)
             .then(res => {
-                console.log("BM is deleted")
                 this.setState({
                     bookmarked: !this.state.bookmarked
                 })
@@ -100,6 +97,7 @@ class CompDetail extends React.Component {
                         <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
                         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
                             <CardText style={{ padding: '10px 10px 10px 10px' }}>
+                            <CardImg className="card-img-top" style={{borderRadius: '10em'}} src={this.state.image} alt="Card image cap" />
                                 <div className="text-left" >
                                 <div>Repository: <a className="welcome" target="_blank" href={this.state.repo}>{this.state.repo}</a></div>
                                     {this.state.npmLink!==undefined && <div>npm-Link: <a className="welcome" target="_blank" href={this.state.npmLink}> {this.state.npmLink}</a></div>}

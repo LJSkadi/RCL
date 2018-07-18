@@ -18,7 +18,9 @@ class ComponentList extends Component {
                     {displayedComponents.map((component, i) => {
                         return(
                             <tr>
-                                    <td key={i}><Link style = {{ color: '#00d8ff'}} to={`/comp/${component._id}`} prevHost={this.props.prevHost} id={component._id}>{component.name}</Link></td>
+                                    <td key={i}><Link style = {{ color: '#00d8ff'}} to={`/comp/${component._id}`} prevHost={this.props.prevHost} id={component._id}>{component.name}</Link>
+                                    <img className="member-avatar" src={component._owner.pictureUrl} alt={`${component._owner.name}`}/>
+                                    </td>
                             </tr>
                         )
                     })

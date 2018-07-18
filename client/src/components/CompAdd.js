@@ -3,7 +3,7 @@ import NameInsert from './NameInsert';
 import ShowInfo from './ShowInfo';
 import api from '../api';
 import './App.css';
-import { Container, Col, Row, Card, CardHeader, CardBody, CardText, Button, Label } from 'reactstrap';
+import { Col, Card, CardHeader, CardBody, CardText, Button } from 'reactstrap';
 
 class CompAdd extends Component {
     constructor(props) {
