@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3000/api',
+  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:3030/api',
 });
 
 const errHandler = err => {
@@ -84,7 +84,7 @@ export default {
 
   addComponent(data) {
     return service
-      .post('/comp/add')
+      .post('/comp/add', data)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -103,9 +103,9 @@ export default {
       .catch(errHandler);
   },
 
-  deleteComponent() {
+  deleteComponent(id) {
     return service
-      .delete('/comp/:_id')
+      .delete(`/comp/${id}`)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -138,16 +138,16 @@ export default {
       .catch(errHandler);
   },
 
-  addBookmark(data) {
+  addBookmark(id) {
     return service
-      .post('/bm/comp/:_id')
+      .post(`/bm/comp/${id}`)
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  deleteBookmark() {
+  deleteBookmark(id) {
     return service
-      .delete('/bm/comp/:_id')
+      .put(`/bm/comp/${id}`)
       .then(res => res.data)
       .catch(errHandler);
   },

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import View from './Profile-view';
-import Edit from './Profile-edit';
-import Delete from './Profile-delete';
+//import View from './Profile-view';
+//import Edit from './Profile-edit';
 import api from '../api';
 
 class Profile extends Component {

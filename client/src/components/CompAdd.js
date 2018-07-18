@@ -1,88 +1,148 @@
 import React, { Component } from 'react';
 import NameInsert from './NameInsert';
+import ShowInfo from './ShowInfo';
 import api from '../api';
 
-import { Col, Form, Button, Label } from 'reactstrap';
+import { Container, Col, Row, Form, Button, Label } from 'reactstrap';
 
 class CompAdd extends Component {
     constructor(props) {
         super(props)
         this.state = {
             onNpm: false,
-            iteration: 0,
+            nextIsName: false,
+            nextInfo: false,
             name: "",
             repo: "",
             npmLink: "",
+            docLink:"",
             hashtags: [],
-            tutorial: [],
-            description: [],
+            tutorial: "",
+            description: ["Please tell us a little bit more about your react component."],
+            license: "",
+            message: ""
         }
-        this.handleClick = this.handleClick.bind(this)
-        this.handleBtnClick = this.handleBtnClick.bind(this)
+        this.handleInput = this.handleInput.bind(this)
+        this.handleNameBtnClick = this.handleNameBtnClick.bind(this)
+        this.handleNameInput = this.handleNameInput.bind(this)
+        this.handleInfoSubmit = this.handleInfoSubmit.bind(this)
     }
 
     handleInput(stateFieldName, event) {
         let newState = {}
-        let prevIteration = this.state.iteration;
         this.setState({
-            [stateFieldName] : event.target.value,
-            iteration : (prevIteration + 1)
+            [stateFieldName]: event.target.value,
         })
     }
 
-    handleBtnClick(stateFieldName, event) {
-        let newState = {}
-        newState[stateFieldName] = event.target.value
+    handleNameBtnClick(stateFieldName, event) {
+        let newState = {};
+        console.log(event)
+        this.setState({
+            [stateFieldName]: event.target.value,
+            nextIsName: !this.state.nextIsName
+        })
+    }
+
+    handleNameInput(newName, event) {
+        event.preventDefault();
+        if (this.state.onNpm) {
+            console.log("I'm here", newName)
+            api.npmInfo(newName)
+                .then(res => {
+                    if(res.npmInfo!==undefined){
+                    console.log("The npmInfo is", res.npmInfo);
+                    let startUrl = res.npmInfo.url.indexOf('h')
+                    let repoURL = res.npmInfo.url.substring(startUrl)
+                    this.setState({
+                        name: res.npmInfo.name,
+                        description: res.npmInfo.description,
+                        hashtags: res.npmInfo.hashtags,
+                        repo: repoURL,
+                        license: res.npmInfo.license,
+                        npmLink: `https://npmjs.com/package/${res.npmInfo.name}`
+                    })
+                    console.log("This is state", this.state);
+                    this.setState({
+                        nextInfo: true
+                    })
+                }else{
+                    this.setState({
+                        onNpm: false,
+                        nextInfo: true,
+                        message: "Couldn't find your module on NPM"
+                    })
+                }
+                })
+                .catch(err => console.log(err))
+        }
+    }
+
+    handleInfoSubmit(stateFieldValues, event) {
+        event.preventDefault();
+        let newState ={
+            name: stateFieldValues.name,
+            repo: stateFieldValues.repo,
+            npmLink: stateFieldValues.npmLink,
+            docLink:stateFieldValues.docLink,
+            hashtags: stateFieldValues.hashtags,
+            tutorial: stateFieldValues.tutorial,
+            description: stateFieldValues.description,
+            license: stateFieldValues.license,  
+        }
         this.setState(newState)
-    }
-
-    handleNameInput(stateFieldName, event) {
-        let newState = {}
-        newState[stateFieldName] = event.target.value
-        this.setState(newState)
-        if(this.state.onNpm===true){
-        api.npmInfo(this.state.name)
-        .then(res => {
-          console.log("The response is", res);
-          console.log("The npmInfo is", res.npmInfo);
-          let startUrl = res.npmInfo.url.indexOf('h')
-          let repoURL = res.npmInfo.url.substring(startUrl)
-          this.setState({
-                name: res.npmInfo.name,
-                description: res.npmInfo.description,
-                hashtags: res.npmInfo.hashtags,
-                repo: repoURL
+        let data ={
+            "name": this.state.name,
+            "repo": this.state.repo,
+            "npmLink": this.state.npmLink,
+            "docLink":this.state.docLink,
+            "hashtags": this.state.hashtags,
+            "tutorial": this.state.tutorial,
+            "description": this.state.description,
+            "license": this.state.license,  
+        }
+        console.log(data)
+        api.addComponent(data)
+        .then( createdComponent => {
+            console.log("This is newComponent.id", createdComponent._id)
+            this.props.history.push(`/comp/${createdComponent._id}`)
         })
-        })
-    }
-    }
-
-    handleClick(e) {
-        e.preventDefault()
-        api.login(this.state.email, this.state.password)
-            .then(result => {
-                console.log('SUCCESS!')
-                this.props.history.push("/") // Redirect to the home page
-            })
-            .catch(err => {
-                console.log('ERROR')
-            })
+        .catch(err => console.log(err))
+        console.log(this.state)
     }
 
     render() {
         return (
-            <Col className="d-flex justify-content-center">
-                <Form>
-                <Label for="onNPM" sm={2}>Is your module or component already an NPM?</Label>
-                <Button color="success" name="onNpm" value="true" onClick={this.handleBtnClick}>Yes</Button>{' '}
-                <Button color="danger" name="onNpm" value="false" onClick={this.handleBtnClick}>No</Button>
+            <Container className="d-flex justify-content-center flex-column">
+                <div className="AddBullet">
+                    <div>
+                        <p>Is your module or component already an NPM?</p>
+                    </div>
+                    <div>
+                        <Button color="success" value={true} onClick={(e) => { this.handleNameBtnClick("onNpm", e) }}>Yes</Button>{' '}
+                        <Button color="danger" value={false} onClick={(e) => { this.handleNameBtnClick("onNpm", e) }}>No</Button>
+                    </div>
+                </div>
 
-                {(this.state.iteration === 1) && <NameInsert onNpm ={this.state.onNpm} handleName = {this.handleNameInput}/>}
-                </Form>
-            </Col>
-            );
-        }
+                <div className="AddBullet">
+                    {(this.state.nextIsName) && <NameInsert onNpm={this.state.onNpm} handleInput={this.handleNameInput} />}
+                </div>
+                {(this.state.nextInfo) && <div className="AddBullet">
+                <ShowInfo 
+                name={this.state.name} 
+                repo={this.state.repo} 
+                npmLink={this.state.npmLink} 
+                docLink={this.state.docLink} 
+                hashtags={this.state.hashtags} 
+                tutorial={this.state.tutorial}
+                description={this.state.description}
+                license={this.state.license}
+                handleSubmit={this.handleInfoSubmit} />
+                </div> }
+            </Container>
+        );
     }
-            
-            
+}
+
+
 export default CompAdd;

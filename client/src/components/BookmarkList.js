@@ -23,8 +23,8 @@ api.getBookmarkList()
   render() {
     return (
       <div>
-            <h2>Hosted Components</h2>
-            <ComponentList components = {this.state.components}/>
+            <h2>My Bookmarks</h2>
+            <ComponentList prevHost={false} components = {this.state.components}/>
             </div>
     );
   }

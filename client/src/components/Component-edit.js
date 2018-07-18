@@ -175,7 +175,7 @@ class ComponentEdit extends Component {
                             </FormGroup>
                         </Col>
                     </FormGroup>
-                    <Button>Submit</Button>
+                    <Button outline color="primary">Submit</Button>
                 </Form>
             </Col>
             );

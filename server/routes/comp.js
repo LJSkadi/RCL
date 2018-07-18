@@ -10,6 +10,7 @@ var router = express.Router();
 //POST /
 router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
     let _owner = req.user._id
+    console.log("This is data", req.body)
     const { 
       name, 
       repo, 
@@ -18,8 +19,9 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
       hashtags, 
       tutorial, 
       description, 
-      hierarchicalStructure, 
-      numberOfLevels } = req.body;
+      //hierarchicalStructure, 
+      //numberOfLevels 
+    } = req.body;
     const newComp = new Component({
       _owner,
       //_collaborators,
@@ -28,7 +30,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
       npmLink, 
       docLink,
       hashtags, 
-      //tutorial, 
+      tutorial, 
       description, 
       //hierarchicalStructure,
       //numberOfLevels
@@ -40,7 +42,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
         List.findOneAndUpdate({ _owner: req.user._id, kind : "HOST" }, { $push: { _components: createdComp._id } }, { new: true })
           .then(updatedHostlist => {
             console.log("HostList is updated --->", updatedHostlist);
-            res.json(updatedHostlist);
+            res.json(createdComp);
           })
           .catch(err => next(err));
       })
@@ -51,9 +53,9 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
   
   //#region DISPLAY ONE COMPONENT
   //GET /:id
-  router.get('/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-    console.log("This is req.params._id", req.params._id);
-    let compId = req.params._id;
+  router.get('/:id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+    console.log("This is req.params.id", req.params.id);
+    let compId = req.params.id;
      Component.findById(compId)
         .then(component => {
             console.log("This is component", component)
@@ -118,8 +120,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
       hostList["_components"].splice(componentIndex, 1); 
       Component.findByIdAndRemove( compId )
           .then( () => {
-            console.log("Component is deleted");
-            res.json();
+            success: true
           })
           .catch(err => next(err))
         })
@@ -130,28 +131,37 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
 //#region GET API INFO
   //GET /
   router.get('/update/:name', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-    let npmName = req.params.name;
-    Promise.all([
-        api.getdetails(`${npmName}`),
-        api.getstat(`${npmName}`, '2000-01-01', `${(new Date().getFullYear())}-${(new Date().getMonth())+1}-${new Date().getDate()}`) 
-    ])
-    .then(array => {
-            let npmInfo ={
-                downloads : array[1].downloads,
-                name: array[0].name,
-                description: array[0].description,
-                maintainers: array[0].maintainers,
-                hashtags: array[0].keywords,
-                repo: array[0].repository,
-                license: array[0].license
-                }
-            console.log("Component is deleted");
-            res.json({
-                success: true,
-                npmInfo
-            });
+    const sendNpmInfoDetails = data => {
+      console.log("data.name",data.name)
+      console.log("data.description",data.description)
+      console.log("data.maintainers",data.maintainers)
+      console.log("data.keywords",data.keywords)
+      console.log("data.repository",data.repository)
+      console.log("license", data.license)
+      if(data.name!==undefined && data.repository!==undefined){
+    let npmInfo = { 
+    "name": data.name,
+    "description": data.description,
+    "maintainers": data.maintainers,
+    "hashtags":data.keywords,
+    "url":data.repository.url,
+    "license":data.license}
+    res.json({
+      success: true,
+      npmInfo})}
+      else{
+          npmInfo={ "name": undefined}
+          res.json({
+            success: false,
+            npmInfo
           })
-        .catch(err => next(err))
+      }
+    }
+    
+    let npmName = req.params.name;
+    //api.getstat(`${npmName}`, '2000-01-01', `${(new Date().getFullYear())}-${(new Date().getMonth())+1}-${new Date().getDate()}`, sendNpmInfoStats); 
+    api.getdetails(`${npmName}`, sendNpmInfoDetails );
+
   });
   //#endregion
 

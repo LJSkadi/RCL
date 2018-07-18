@@ -8,12 +8,7 @@ class ComponentList extends Component {
         let displayedComponents = this.props.components;
         console.log("This is displayedComponents", displayedComponents);
         return(
-            <Table
-            dark striped hover
-                    style = {{
-                        margin: '0 auto',
-                        maxWidth: 800}}
-            >
+            <Table dark striped hover style = {{ margin: '20px auto', maxWidth: 800}}>
             <thead>
                         <tr>
                             <th>#</th>
@@ -25,11 +20,9 @@ class ComponentList extends Component {
                         return(
                             <tr>
                                     <th scope="row">{i+1}</th>
-                                    <td key={i}><Link to={`/comp/${component._id}`} id={component._id}>{component.name}</Link></td>
-
+                                    <td key={i}><Link to={`/comp/${component._id}`} prevHost={this.props.prevHost} id={component._id}>{component.name}</Link></td>
                             </tr>
                         )
-                        
                     })
                     }
                  </tbody>

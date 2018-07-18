@@ -36,13 +36,18 @@ router.post('/comp/:_id/', passport.authenticate("jwt", config.jwtSession), (req
 
 //#region REMOVE A BOOKMARK
 //DELETE /
-  router.delete('/comp/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  router.put('/comp/:_id', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
     let compId = req.params._id;
     List.findOne({ _owner: req.user._id, kind : "BOOKMARK" })
     .populate('_components')
     .then(bookmarkList => {
       let componentIndex = bookmarkList["_components"].findIndex( component => component._id === compId);
       bookmarkList["_components"].splice(componentIndex, 1); 
+      List.findOneAndUpdate({ _owner: req.user._id, kind : "BOOKMARK" }, {_components: bookmarkList._components}, { new: true })
+      .then(newBMList => {
+        res.json(newBMList)
+      })
+      .catch(err => next(err))
     })
     .catch(err => next(err))
   });

@@ -1,6 +1,8 @@
 import React from 'react';
 import api from '../api';
 import ComponentList from './ComponentList';
+import { Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class HostList extends React.Component {
   constructor(props){
@@ -24,8 +26,9 @@ api.getHostList()
     return (
       <div>
             <h2>Hosted Components</h2>
-            <ComponentList components = {this.state.components}/>
-            </div>
+            <ComponentList prevHost={true} components = {this.state.components}/>
+            <Button outline color="primary"><Link to="/comp/add">ADD A COMPONENT</Link></Button>
+      </div>
     );
   }
 }
