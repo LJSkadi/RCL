@@ -208,7 +208,7 @@ const c7 = new Component(
         _owner: lars._id,
         npmLink: "",
         docLink: "",
-        hashtags: [],
+        hashtags: ["react", "meg", "active"],
         tutorial: "",
         description: ["This react component should make our favorite Irondog Meg interactive..Unfortunatly, this component has still a lot of bugs."],
         license: "Apple"
