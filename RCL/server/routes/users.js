@@ -31,8 +31,9 @@ router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, re
 //POST /Profile
 router.put('/profile', [passport.authenticate("jwt", config.jwtSession), uploadCloud.single('photo')], (req, res, next) => {
   console.log("This is the User-ID:" + req.user._id)
-  const { password, pictureUrl, name } = req.body;
+  const { pictureUrl, name } = req.body;
   const userId = req.user._id;
+  let password = "password";
   let newImage = req.file ? req.file.secure_url : req.user.profileImage;
   let updateInformation = {pictureUrl, name}
   // Setting a new password
