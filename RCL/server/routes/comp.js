@@ -9,8 +9,9 @@ var router = express.Router();
 //#region ADD A NEW COMPONENT
 //POST /
 router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
-    let _owner = req.user._id
-    console.log("This is data", req.body)
+  let userId = req.user._id
+  User.findById(userId)
+  .then(user =>{
     const { 
       name, 
       repo, 
@@ -23,7 +24,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
       //numberOfLevels 
     } = req.body;
     const newComp = new Component({
-      _owner,
+      ownerrepo: user.github,
       //_collaborators,
       name, 
       repo, 
@@ -47,6 +48,9 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
           .catch(err => next(err));
       })
       .catch(err => next(err));
+  })  
+  .catch(err => next(err));
+    
   });
   //#endregion
   

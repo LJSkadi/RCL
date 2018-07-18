@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 
 const componentSchema = new mongoose.Schema({
   name: { type: String, required: [true, 'A name is required'] },
-  _owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  _owner: { type: Schema.Types.ObjectId, ref: 'User' },
+  ownerrepo: { type: String, required: [true, 'A owner-github is required']},
   //_collaborators: [{ type: [Schema.Types.ObjectId], ref: 'User' }],
   repo: { type: String, required: [true, 'A github-Repository is required'] },
   npmLink: { type: String, default: "" }, //I can change this to an embedded NPM-Info field anytime
