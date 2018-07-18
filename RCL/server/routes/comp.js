@@ -1,6 +1,7 @@
 var express = require('express');
 const List = require('../models/list')
 const Component = require('../models/component')
+const User = require('../models/user')
 const passport = require('passport');
 const config = require('../configs/index');
 const api = require('api-npm');
@@ -25,6 +26,7 @@ router.post('/add', passport.authenticate("jwt", config.jwtSession), (req, res, 
     } = req.body;
     const newComp = new Component({
       ownerrepo: user.github,
+      _owner: userId,
       //_collaborators,
       name, 
       repo, 

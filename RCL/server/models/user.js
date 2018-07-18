@@ -10,6 +10,7 @@ const userSchema = new Schema({
   _listHost:   [{type:[Schema.Types.ObjectId], ref: 'List'}],
   _listBookmark: [{type:[Schema.Types.ObjectId], ref: 'List'}],
   confirmationCode: String,
+  password: {type:String, default:"password"},
   hashed: String, // Defined with passportLocalMongoose
   salt: String, // Defined with passportLocalMongoose
   status: {type: Boolean, default: false},

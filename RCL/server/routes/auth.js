@@ -29,7 +29,6 @@ router.post('/signup', (req, res, next) => {
   const user = new User({
     name,
     email,
-    password,
     pictureUrl,
     github
   });
