@@ -18,6 +18,7 @@ router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, re
   .populate({ path: '_listHost', populate: { path: '_components'}})
   .populate({ path: '_listBookmark', populate: { path: '_components'}})
     .then((user) => {
+      console.log(user)
       res.json({
         user
       });

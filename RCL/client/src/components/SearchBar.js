@@ -24,7 +24,7 @@ class SearchBar extends Component {
                         onChange = {this.props.onSearch}
                         style = {{
                             backgroundColor: '#3b3b3b', 
-                            color: 'white',
+                            color: '#00d8ff',
                             margin: '0 auto',
                             maxWidth: 800
                         }} />

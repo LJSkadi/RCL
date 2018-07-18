@@ -3,13 +3,10 @@ import { createHashHistory } from 'history';
 import { Route, Link, Switch } from 'react-router-dom';
 import { Tooltip } from 'reactstrap';
 import Home from './Home';
-import Countries from './Countries';
-import AddCountry from './AddCountry';
 import CompDetail from './CompDetail';
 import CompAdd from './CompAdd';
 import Login from './Login';
 import Signup from './Signup';
-//import Profile from './Profile';
 import Search from './Search';
 import HostList from './HostList';
 import BookmarkList from './BookmarkList';
@@ -53,8 +50,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to RCL</h1>
+          <h1 className="App-title">RCL</h1>
           <p className="App-Subtitle"> Open React Component Library</p>
+
 
           <Link to="/" style={{ margin: '15px 15px' }} id="homeIcon"><FontAwesomeIcon icon="home" /></Link> {' '}
           <Tooltip placement="bottom" isOpen={this.state.tooltipOpenHome} target="homeIcon" toggle={(e) => this.toggle("tooltipOpenHome", e) }>Home</Tooltip>
@@ -77,8 +75,6 @@ class App extends Component {
           <Route path="/comp/add" component={CompAdd} />
           <Route path="/comp/:id" component={CompDetail} />
           <Route path="/bm" component={BookmarkList} />
-          <Route path="/countries" component={Countries} />
-          <Route path="/add-country" component={AddCountry} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
@@ -88,4 +84,14 @@ class App extends Component {
 export const history = createHashHistory();
 export default App;
 
-//<Route path="/profile" component={Profile} />
+          {/* <div id="carousel" className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+            <div className="carousel-item active"><img className="d-block w-100" src="https://res.cloudinary.com/dazh9innn/image/upload/v1531253140/josh-rose-506979-unsplash.jpg" alt="First slide"/></div>
+              <div className="carousel-item"><img className="d-block w-100" src="https://res.cloudinary.com/dazh9innn/image/upload/v1531728414/wing-light-black-and-white-architecture-structure-white-682880-pxhere.com.jpg" alt="Second slide"/></div>
+              <div className="carousel-item"><img className="d-block w-100" src="https://res.cloudinary.com/dazh9innn/image/upload/v1531728414/abstract-black-blocks-shapes-monochrome-modern-wide.jpg" alt="Third slide"/></div>
+              <div className="carousel-item"><img className="d-block w-100" src="https://res.cloudinary.com/dazh9innn/image/upload/v1531253140/joshua-hoehne-547348-unsplash.jpg" alt="Forth slide"/></div>
+            </div>
+          </div> */}
+
+
+

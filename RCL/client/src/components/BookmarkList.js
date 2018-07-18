@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../api';
+import './App.css';
 import ComponentList from './ComponentList';
 
 class BookmarkList extends React.Component {
@@ -23,7 +24,7 @@ api.getBookmarkList()
   render() {
     return (
       <div>
-            <h2>My Bookmarks</h2>
+            <h2 className="listTitle">My Bookmarks</h2>
             <ComponentList prevHost={false} components = {this.state.components}/>
             </div>
     );

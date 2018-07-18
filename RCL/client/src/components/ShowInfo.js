@@ -171,7 +171,7 @@ class ShowInfo extends Component {
                             style={{
                                 backgroundColor: '#3b3b3b',
                                 color: 'white',
-                                margin: '0 auto',
+                                margin: '20 auto',
                                 maxWidth: 800
                             }}
                             onChange={(e) => this.handleInput("name", e)}

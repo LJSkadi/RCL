@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import NameInsert from './NameInsert';
 import ShowInfo from './ShowInfo';
 import api from '../api';
-
-import { Container, Col, Row, Form, Button, Label } from 'reactstrap';
+import './App.css';
+import { Container, Col, Row, Card, CardHeader, CardBody, CardText, Button, Label } from 'reactstrap';
 
 class CompAdd extends Component {
     constructor(props) {
@@ -29,14 +29,12 @@ class CompAdd extends Component {
     }
 
     handleInput(stateFieldName, event) {
-        let newState = {}
         this.setState({
             [stateFieldName]: event.target.value,
         })
     }
 
     handleNameBtnClick(stateFieldName, event) {
-        let newState = {};
         console.log(event)
         this.setState({
             [stateFieldName]: event.target.value,
@@ -113,18 +111,19 @@ class CompAdd extends Component {
 
     render() {
         return (
-            <Container className="d-flex justify-content-center flex-column">
-                <div className="AddBullet">
-                    <div>
-                        <p>Is your module or component already an NPM?</p>
-                    </div>
-                    <div>
-                        <Button color="success" value={true} onClick={(e) => { this.handleNameBtnClick("onNpm", e) }}>Yes</Button>{' '}
+              <div className="flex-column">
+        
+        <Col className="d-flex justify-content-center">
+<Card className="Card" style={{ width: '20rem' }} >
+          <CardHeader className="CardHeader" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>
+              <div>Is your module or component already an NPM?</div>
+          <div><Button color="success" value={true} onClick={(e) => { this.handleNameBtnClick("onNpm", e) }}>Yes</Button>{' '}
                         <Button color="danger" value={false} onClick={(e) => { this.handleNameBtnClick("onNpm", e) }}>No</Button>
-                    </div>
-                </div>
-
-                <div className="AddBullet">
+                        </div>
+          </CardHeader>
+          <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
+            <CardText className="text-center" style={{padding: '10px 10px 10px 10px'}}>
+            <div className="AddBullet">
                     {(this.state.nextIsName) && <NameInsert onNpm={this.state.onNpm} handleInput={this.handleNameInput} />}
                 </div>
                 {(this.state.nextInfo) && <div className="AddBullet">
@@ -139,7 +138,11 @@ class CompAdd extends Component {
                 license={this.state.license}
                 handleSubmit={this.handleInfoSubmit} />
                 </div> }
-            </Container>
+            </CardText>
+          </CardBody>
+        </Card>
+      </Col>
+      </div>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import api from '../api';
 import { Link } from 'react-router-dom';
-import { ListGroup, ListGroupItem, InputGroupAddon, Button } from 'reactstrap';
+import { Col, Card, CardHeader, CardBody, CardText, ListGroup, ListGroupItem, InputGroupAddon, Button } from 'reactstrap';
 
 class CompDetail extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class CompDetail extends React.Component {
             hashtags: [], //Array
             tutorial: [],   //Array
             description: [], //Array
-            license:""
+            license: ""
         }
         this.handleDeleteClick = this.handleDeleteClick.bind(this)
         this.handleBMClick = this.handleBMClick.bind(this)
@@ -95,25 +95,33 @@ class CompDetail extends React.Component {
         let prevHost = this.props.prevHost;
         return (
             <div>
-                <ListGroup>
-                    <h2>{this.props.name}</h2>
-                    <InputGroupAddon addonType="prepend">Repository: <ListGroupItem tag="a" target="_blank" href={this.state.repo}>{this.state.repo}</ListGroupItem></InputGroupAddon>
-                    {(this.state.npmLink !== "") && <InputGroupAddon addonType="prepend">npm-Link: <ListGroupItem tag="a" target="_blank" href={this.state.npmLink}>{this.state.npmLink}</ListGroupItem></InputGroupAddon>}
-                    {(this.state.docLink !== "") && <InputGroupAddon addonType="prepend">Documentary: <ListGroupItem tag="a" target="_blank" href={this.state.docLink}>{this.state.docLink}</ListGroupItem></InputGroupAddon>}
-                    {(this.state.description !== []) && <InputGroupAddon addonType="prepend">Description: <ListGroupItem>{this.state.description}</ListGroupItem></InputGroupAddon>}
-                    {(this.state.tutorial !== "") && <InputGroupAddon addonType="prepend">Tutorial: <ListGroupItem>{this.state.tutorial}</ListGroupItem></InputGroupAddon>}
-                    {(this.state.license !== "") && <InputGroupAddon addonType="prepend">License: <ListGroupItem>{this.state.license}</ListGroupItem></InputGroupAddon>}
-                    <InputGroupAddon addonType="prepend">Hashtags: <ListGroupItem> {this.state.hashtags.map(tag => `${tag} `)}</ListGroupItem></InputGroupAddon>
-                </ListGroup>
-                <div>
-                    {prevHost && <Button outline color="primary"><Link to={`/comp/edit/${this.props.match.params.id}`}>Edit</Link></Button>}
-                    {prevHost && <Button outline color="danger" onClick={this.handleDeleteClick}>Delete</Button>}
-                    {!prevHost && !this.state.bookmarked && <Button outline color="primary" onClick={this.handleBMClick}>Bookmark</Button>}
-                    {!prevHost && this.state.bookmarked && <Button outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
-                </div>
+                <Col className="d-flex justify-content-center">
+                    <Card className="Card" style={{ width: '20rem' }} >
+                        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
+                        <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
+                            <CardText style={{ padding: '10px 10px 10px 10px' }}>
+                                <div className="text-left" >
+                                <div>Repository: <a className="welcome" target="_blank" href={this.state.repo}>{this.state.repo}</a></div>
+                                    {this.state.npmLink!==undefined && <div>npm-Link: <a className="welcome" target="_blank" href={this.state.npmLink}> {this.state.npmLink}</a></div>}
+                                    {this.state.docLink!==undefined && <div>Documentary: <a className="welcome" target="_blank" href={this.state.docLink}>{this.state.docLink}</a></div>}
+                                    {this.state.description!==[] && <div>Description: <p className="welcome">{this.state.description}</p></div>}
+                                    {this.state.tutorial!==undefined && <div>Tutorial: <p className="welcome">{this.state.tutorial}</p></div>}
+                                    {this.state.license!==undefined && <div>License: <p className="welcome">{this.state.license}</p></div>}
+                                    <div>Hashtags: <p className="welcome"> {this.state.hashtags.map(tag => `${tag} `)}</p></div>
+                                </div>
+                                <div className="text-center" >
+                                    {prevHost && <Button outline color="primary"><Link to={`/comp/edit/${this.props.match.params.id}`}>Edit</Link></Button>}
+                                    {prevHost && <Button outline color="danger" onClick={this.handleDeleteClick}>Delete</Button>}
+                                    {!prevHost && !this.state.bookmarked && <Button outline color="primary" onClick={this.handleBMClick}>Bookmark</Button>}
+                                    {!prevHost && this.state.bookmarked && <Button outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
+                                </div>
+                            </CardText>
+                        </CardBody>
+                    </Card>
+                </Col>
             </div>
-        );
-    }
+        )
+}
 }
 
 export default CompDetail;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import './App.css';
 import {
-    Container, Col, Form, FormGroup, Label, Input, Button
+    Container, Col, Form, Input, Button
 } from 'reactstrap';
 
 
@@ -40,7 +41,7 @@ handleInput(event){
                         }}
                         onChange={this.handleInput}
                     />
-                <Button type="submit" >Submit Name</Button>
+                <Button style={{margin: '20px 20px 20px 20px'}} type="submit" >Submit Name</Button>
                 </Form>
                 </Col>
             </Container>

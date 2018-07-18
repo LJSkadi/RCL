@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table } from 'reactstrap';
 
 class ComponentList extends Component {
@@ -8,10 +8,9 @@ class ComponentList extends Component {
         let displayedComponents = this.props.components;
         console.log("This is displayedComponents", displayedComponents);
         return(
-            <Table dark striped hover style = {{ margin: '20px auto', maxWidth: 800}}>
+            <Table dark striped hover style = {{ margin: '20px auto', opacity: 0.9, maxWidth: 400}}>
             <thead>
                         <tr>
-                            <th>#</th>
                             <th>Name</th>
                         </tr>
                     </thead>
@@ -19,8 +18,7 @@ class ComponentList extends Component {
                     {displayedComponents.map((component, i) => {
                         return(
                             <tr>
-                                    <th scope="row">{i+1}</th>
-                                    <td key={i}><Link to={`/comp/${component._id}`} prevHost={this.props.prevHost} id={component._id}>{component.name}</Link></td>
+                                    <td key={i}><Link style = {{ color: '#00d8ff'}} to={`/comp/${component._id}`} prevHost={this.props.prevHost} id={component._id}>{component.name}</Link></td>
                             </tr>
                         )
                     })

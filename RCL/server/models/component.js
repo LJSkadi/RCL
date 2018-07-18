@@ -16,7 +16,7 @@ const componentSchema = new mongoose.Schema({
   //},
   description: {
     type: String,
-    default: []
+    default: ["This maintainer did not add a description"]
   },
   license: String,
   //hierarchicalStructure: String,
