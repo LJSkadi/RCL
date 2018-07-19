@@ -44,7 +44,7 @@ class ShowInfo extends Component {
             <div>
             <Form outline color="primary" style={{margin: '10px 0 10px 0'}} onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
                 <FormGroup row>
-                    <Label for="repo" sm={2}>Repository</Label>
+                    <Label for="repo" sm={10}>Repository</Label>
                     <Col sm={10}>
                         <Input
                             type="text"
@@ -63,7 +63,7 @@ class ShowInfo extends Component {
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label for="npmLink" sm={2}>NPM</Label>
+                    <Label for="npmLink" sm={10}>NPM</Label>
                     <Col sm={10}>
                         <Input
                             type="url"
@@ -82,7 +82,7 @@ class ShowInfo extends Component {
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label for="docLink" sm={2}>Documentation-Link</Label>
+                    <Label for="docLink" sm={10}>Documentation-Link</Label>
                     <Col sm={10}>
                         <Input
                             type="url"
@@ -101,7 +101,7 @@ class ShowInfo extends Component {
                 </FormGroup>
 
                 <FormGroup tag="fieldset" row>
-                        <Label for="tutorial">Does a tutorial exists?</Label>
+                        <Label for="tutorial"sm={10}>Does a tutorial exists?</Label>
                         <Col sm={10}>
                              <FormGroup check inline>
                                     <Input 
@@ -120,7 +120,7 @@ class ShowInfo extends Component {
                     </FormGroup>
 
                 <FormGroup row>
-                    <Label for="hashtags" sm={2}>Keywords</Label>
+                    <Label for="hashtags" sm={10}>Keywords</Label>
                     <Col sm={10}>
                         <Input
                             type="textarea"
@@ -140,7 +140,7 @@ class ShowInfo extends Component {
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label for="description" sm={2}>Description</Label>
+                    <Label for="description" sm={10}>Description</Label>
                     <Col sm={10}>
                         <Input
                             type="textarea"
@@ -160,7 +160,7 @@ class ShowInfo extends Component {
                 </FormGroup>
 
                 <FormGroup row>
-                    <Label for="licence" sm={2}>License</Label>
+                    <Label for="licence" sm={10}>License</Label>
                     <Col sm={10}>
                         <Input
                             type="text"

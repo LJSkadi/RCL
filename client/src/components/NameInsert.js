@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {
-    Container, Col, Form, Input, Button
+    Container, Col, Row,Form, Input, Button
 } from 'reactstrap';
 
 
@@ -23,25 +23,23 @@ handleInput(event){
 
     render() {
         return (
-            <Container>
+            <Container className="text-center">
                 {this.props.onNpm && <div>Under which name is the module or component published on NPM?</div>}
                 {!this.props.onNpm && <div>What is the name of the module or component?</div>}
                 <Col sm={10}>
-                <Form outline color="primary" style={{margin: '10px 0 10px 0'}} onSubmit={(e) => this.props.handleInput(this.state.name, e)}>
+                <Form className="d-flex flex-column" outline color="primary" onSubmit={(e) => this.props.handleInput(this.state.name, e)}>
                     <Input
                         type="text"
                         name="name"
                         id="name"
-                        placeholder="Components Name"
+                        placeholder="Name"
                         style={{
                             backgroundColor: '#3b3b3b',
                             color: 'white',
-                            margin: '0 auto',
-                            maxWidth: 800
                         }}
                         onChange={this.handleInput}
                     />
-                <Button style={{margin: '20px 20px 20px 20px'}} type="submit" >Submit Name</Button>
+               <Button style={{margin: '20px 20px 20px 20px'}} type="submit" >Submit Name</Button>
                 </Form>
                 </Col>
             </Container>

@@ -98,7 +98,7 @@ export default {
 
   editComponent(data) {
     return service
-      .put('/comp/edit/:_id')
+      .put('/comp/edit/:_id', data)
       .then(res => res.data)
       .catch(errHandler);
   },

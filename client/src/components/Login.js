@@ -14,7 +14,6 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      history: "",
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);

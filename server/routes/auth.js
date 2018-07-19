@@ -29,6 +29,7 @@ router.post('/signup', (req, res, next) => {
   const user = new User({
     name,
     email,
+    //password,
     pictureUrl,
     github
   });
@@ -58,10 +59,13 @@ router.post('/signup', (req, res, next) => {
 });
 
 router.post('/login', (req, res, next) => {
+  console.log("This is req.body", typeof req.body.email)
   const authenticate = User.authenticate();
   const { email, password } = req.body;
   // check if we have a email and password
   if (email && password) {
+    console.log("This is email, password", email, password)
+
     // test if the credentials are valid
     authenticate(email, password, (err, user, failed) => {
       if (err) {

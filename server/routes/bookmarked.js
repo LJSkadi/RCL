@@ -41,7 +41,15 @@ router.post('/comp/:_id/', passport.authenticate("jwt", config.jwtSession), (req
     List.findOne({ _owner: req.user._id, kind : "BOOKMARK" })
     .populate('_components')
     .then(bookmarkList => {
-      let componentIndex = bookmarkList["_components"].findIndex( component => component._id === compId);
+      let componentIndex = -1;
+      let compCount = 0;
+      while (componentIndex === -1 && compCount < bookmarkList._components.length) {
+      console.log("This is bookmarkList._components[compCount]._id", bookmarkList._components[compCount]._id);
+      console.log("This is compId", req.params._id);
+      componentIndex = (bookmarkList._components[compCount]._id == compId) ? compCount : -1;
+      compCount++;
+      };
+      console.log("This is componentIndex", componentIndex);
       bookmarkList["_components"].splice(componentIndex, 1); 
       List.findOneAndUpdate({ _owner: req.user._id, kind : "BOOKMARK" }, {_components: bookmarkList._components}, { new: true })
       .then(newBMList => {
