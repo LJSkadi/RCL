@@ -3,7 +3,7 @@ import api from '../api';
 import {
   Col, Card, CardText, CardBody, Form,
   CardHeader, CardFooter, CardLink,
-  FormGroup, FormFeedback, Input, Button
+  FormGroup, FormFeedback, Input, Button, Label
 } from 'reactstrap';
 
 class Signup extends Component {

@@ -45,7 +45,7 @@ class Profile extends Component {
           </CardText>
         </CardBody>
         <CardFooter className="CardFooter text-muted" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>
-          <Button outline color="success" onClick={this.props.}>Edit</Button><br />
+          <Button outline color="success" onClick={this.props.handleClick}>Edit</Button><br />
         </CardFooter>
       </Card>
     );

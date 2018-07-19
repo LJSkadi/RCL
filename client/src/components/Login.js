@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import api from '../api';
 import {
     Col, Card, CardText, CardBody,
-    CardHeader, CardFooter, CardLink,
+    CardHeader, CardFooter, CardLink, Form, FormGroup, Label,
     InputGroup, InputGroupAddon, InputGroupText, Input, Button
 } from 'reactstrap';
 
@@ -49,10 +49,10 @@ class Login extends Component {
                                 <FormGroup row className="d-flex justify-content-center">
                                     <Label for="email" sm={10}>Email</Label>
                                     <Col sm={10}>
-                                        <Input
+                                        <Input valid
                                             type="text"
                                             name="email"
-                                            style={{ backgroundColor: '#3b3b3b', color: 'white' }}
+                                            style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff'  }}
                                             value={this.state.email}
                                             onChange={(e) => { this.handleInputChange("email", e) }} />
                                     </Col>
@@ -64,7 +64,7 @@ class Login extends Component {
                                         <Input valid
                                             type="password"
                                             name="password"
-                                            style={{ backgroundColor: '#3b3b3b', color: 'white' }}
+                                            style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff'  }}
                                             value={this.state.password}
                                             onChange={(e) => { this.handleInputChange("password", e) }} />
                                     </Col>

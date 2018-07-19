@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../api';
 import {
-  Card, CardHeader, CardBody, CardText, CardImg, CardFooter, CardLink, Button,
+  Col, Card, CardHeader, CardBody, CardText, CardImg, CardFooter, CardLink, Button,
   Form, FormGroup, Input, Label
 } from 'reactstrap';
 
@@ -18,7 +18,7 @@ class ProfileEdit extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleFileChange = this. handleFileChange.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class ProfileEdit extends Component {
       name: this.props.name,
       github: this.props.github,
       pictureUrl: this.props.pictureUrl,
-  
+
     })
 
   }
@@ -39,7 +39,7 @@ class ProfileEdit extends Component {
     })
   }
 
-  handleFileChange(e){
+  handleFileChange(e) {
     this.setState({
       file: e.target.files[0]
     })
@@ -53,28 +53,32 @@ class ProfileEdit extends Component {
           <CardText className="text-center" style={{ padding: '10px 10px 10px 10px' }}>
             <CardImg className="card-img-top" src={this.props.pictureUrl} alt="Card image cap" />
             <Form outline color="primary" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-              <FormGroup>
-                <Input valid
-                  name="name"
-                  type="text"
-                  style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
-                  placeholder={this.props.name}
-                  value={this.state.name}
-                  onChange={(e) => this.handleChange("name", e)} />
-
+              <FormGroup row className="d-flex justify-content-center">
+                <Label for="name" sm={10}>Name</Label>
+                <Col sm={10}>
+                  <Input valid
+                    name="name"
+                    type="text"
+                    style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                    placeholder={this.props.name}
+                    value={this.state.name}
+                    onChange={(e) => this.handleChange("name", e)} />
+                </Col>
+              </FormGroup>
+              <FormGroup row className="d-flex justify-content-center">
+                <Label for="github" sm={10}>Github-Profile</Label>
+                <Col sm={10}>
+                  <Input valid
+                    name="github"
+                    type="text"
+                    style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                    placeholder={this.props.github}
+                    value={this.state.github}
+                    onChange={(e) => { this.handleChange("github", e) }} />
+                </Col>
               </FormGroup>
               <FormGroup>
-                <Input valid
-                  name="github"
-                  type="text"
-                  style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
-                  placeholder={this.props.github}
-                  value={this.state.github}
-                  onChange={(e) => { this.handleChange("github", e) }} />
-
-              </FormGroup>
-              <FormGroup>
-              <Label for="repo" sm={10}>Upload a Profile Pic</Label>
+                <Label for="repo" sm={10}>Upload a Profile Pic</Label>
                 <Input className="form-control-file" onChange={this.handleFileChange} type="file" name="picture" />
                 <br />
               </FormGroup>
