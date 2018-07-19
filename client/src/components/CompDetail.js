@@ -1,5 +1,6 @@
 import React from 'react';
 import api from '../api';
+import EditBtn from './CompEditButtons';
 import { Link } from 'react-router-dom';
 import { Col, Row, Card, CardImg, CardHeader, CardBody, CardText, Button } from 'reactstrap';
 
@@ -10,6 +11,7 @@ class CompDetail extends React.Component {
             owned: false,
             bookmarked: false,
             newSearch: false,
+            toEdit: false,
             owner: "",
             id: "",
             name: "",
@@ -24,6 +26,9 @@ class CompDetail extends React.Component {
         
         this.handleBMClick = this.handleBMClick.bind(this)
         this.handleBMDelete = this.handleBMDelete.bind(this)
+        this.handleDeleteClick=this.handleDeleteClick.bind(this)
+        this.handleEditClick=this.handleEditClick(this)
+        this.handleSubmitClick=this.handleSubmitClick.bind(this)
     }
 
 
@@ -33,6 +38,7 @@ class CompDetail extends React.Component {
         api.getComponent(compId)
             .then(res => {
                 this.setState({
+                    toEdit: false,
                     id: compId,
                     name: res.component.name,
                     owner: res.component._owner,
@@ -74,14 +80,25 @@ class CompDetail extends React.Component {
         }
     }
 
-    handleEditClick(event) {
+    handleDeleteClick(event) {
         let compId = this.state.id;
         api.deleteComponent(compId)
             .then(res => {
-                this.props.history.push("/host")  // Redirect to the home page
+                this.componentDidMount();
+                this.props.history.push("/host") 
             })
             .catch(err => console.log(err))
-    }
+      }
+
+    handleEditClick(e){
+
+        if(this.state.owned){
+            this.setState({
+                toEdit: true,
+              })
+        this.props.history.push(`/host/edit/${this.state.id}`)  // Redirect to the home page
+        }
+      }
 
     handleBMClick(event) {
         let compId = this.state.id;
@@ -105,6 +122,12 @@ class CompDetail extends React.Component {
             })
             .catch(err => console.log(err))
     }
+
+    handleSubmitClick(e){
+        this.setState({
+          toEdit: false,
+        })
+      }
 
     render() {
         return (
@@ -130,6 +153,11 @@ class CompDetail extends React.Component {
                                             {!this.state.bookmarked && <Button style={{ margin: '10px 10px 10px 10px' }} outline color="primary" onClick={this.handleBMClick}>Bookmark</Button>}
                                             {this.state.bookmarked && <Button style={{ margin: '10px 10px 10px 10px' }} outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
                                         </Row>
+                                        <Row className="d-flex justify-content-center">
+                                        {this.state.owned && !this.state.toEdit && <EditBtn className="d-flex justify-content-center" handleEClick={this.handleEditClick} handleDClick={this.handleDeleteClick}/>}
+         
+                                        </Row>
+
                                     </Col>
                                 </div>
                             </CardText>

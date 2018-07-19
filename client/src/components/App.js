@@ -74,7 +74,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/host" component={HostList} />
           <Route path="/comp/add" component={CompAdd} />
-          <Route path="/comp/:id/edit" component={CompEdit} />
+          <Route path="/host/edit/:id" component={CompEdit} />
           <Route path="/comp/:id" component={CompDetail} />
           <Route path="/bm" component={BookmarkList} />
           <Route render={() => <h2>404</h2>} />
