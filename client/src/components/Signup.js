@@ -18,7 +18,7 @@ class Signup extends Component {
     }
 
     this.handleClick = this.handleClick.bind(this);
-    //this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(stateFieldName, event) {
@@ -54,55 +54,60 @@ class Signup extends Component {
           <CardHeader className="CardHeader" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>Sign up</CardHeader>
           <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
             <CardText className="text-center">
-              <Form>
-                  <FormGroup>
-                  <Input valid
-                    type = "text"
-                    name = "email"
-                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    placeholder="Email"
-                    value = {this.props.email}
-                    onChange={(e) => { this.handleInputChange("email", e) }} />
-                    <FormFeedback   
-                      style={{color:'#25dbff', borderColor:'#25dbff'}} 
-                      valid>This email is valid</FormFeedback>
-                    <FormFeedback 
-                      invalid>This email is already registered</FormFeedback>
+              <Form outline color="primary">
+                <FormGroup row className="d-flex justify-content-center">
+                  <Label for="email" sm={10}>Email</Label>
+                  <Col sm={10}>
+                    <Input valid
+                      type="text"
+                      name="email"
+                      style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                      placeholder="Email"
+                      value={this.props.email}
+                      onChange={(e) => { this.handleInputChange("email", e) }} />
+                  </Col>
                 </FormGroup>
                 <br />
-                <FormGroup>
-                  <Input valid
-                    type = "text"
-                    name = "name"
-                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    placeholder = "Username"
-                    value = {this.props.name}
-                    onChange = {(e) => { this.handleInputChange("name", e) }} />
-                    <FormFeedback valid>This username is available</FormFeedback>
-                    <FormFeedback invalid>This username is already taken</FormFeedback>
+                <FormGroup row className="d-flex justify-content-center">
+                  <Label for="name" sm={10}>Name</Label>
+                  <Col sm={10}>
+                    <Input valid
+                      type="text"
+                      name="name"
+                      style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                      placeholder="Username"
+                      value={this.props.name}
+                      onChange={(e) => { this.handleInputChange("name", e) }} />
+                  </Col>
                 </FormGroup>
                 <br />
-                  <Input
-                    type = "password"
-                    name = "password"
-                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    placeholder = "Password"
-                    value = {this.props.password}
-                    onChange={(e) => { this.handleInputChange("password", e) }} />
+                <FormGroup row className="d-flex justify-content-center">
+                  <Label for="password" sm={10}>Password</Label>
+                  <Col sm={10}>
+                    <Input valid
+                      type="password"
+                      name="password"
+                      style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                      placeholder="Password"
+                      value={this.props.password}
+                      onChange={(e) => { this.handleInputChange("password", e) }} />
+                  </Col>
+                </FormGroup>
                 <br />
-                <FormGroup>
-                  <Input valid
-                    type = "url"
-                    name = "github"
-                    style = {{ backgroundColor: '#3b3b3b', color: 'white' }}
-                    placeholder = "Link to your githubProfile"
-                    value = {this.props.github}
-                    onChange = {(e) => { this.handleInputChange("github", e) }} />
-                    <FormFeedback valid>This githubProfile is not registered yet</FormFeedback>
-                    <FormFeedback invalid>This githubProfile is already registered!</FormFeedback>
-                    </FormGroup>
+                <FormGroup row className="d-flex justify-content-center">
+                  <Label for="github" sm={10}>Github-Profile</Label>
+                  <Col sm={10}>
+                    <Input valid
+                      type="url"
+                      name="github"
+                      style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
+                      placeholder="Link to your githubProfile"
+                      value={this.props.github}
+                      onChange={(e) => { this.handleInputChange("github", e) }} />
+                  </Col>
+                </FormGroup>
                 <br />
-            <Button onClick={this.handleClick}>Signup!</Button>
+                <Button onClick={this.handleClick}>Signup!</Button>
               </Form>
             </CardText>
           </CardBody>
