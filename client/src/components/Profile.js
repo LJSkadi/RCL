@@ -28,19 +28,16 @@ class Profile extends Component {
 
   render() {
     return (
-      <Card className="Card" style={{ maxWidth: '40rem' }} >
-        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
+      <Card className="Card d-flex justify-content-center flex-column" style={{ maxWidth: '40rem' }} >
+        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.props.name}</CardHeader>
         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
-          <CardText style={{ padding: '10px 10px 10px 10px' }}>
             <CardImg className="card-img-top" style={{ borderRadius: '10em', maxWidth: '20rem' }} src={this.props.pictureUrl} alt="Card image cap" />
-            <Col className="d-flex justify-content-center flex-column">
-              <Row>
-              <Label for="email" sm={10}>Email</Label>
-               {this.props.email}</Row>
-               
-              <Row>
-                <Label for="github" sm={10}>Github</Label> 
-                {this.props.github}</Row>
+          <CardText style={{ padding: '10px 10px 10px 10px' }}>
+            <Col>
+              <Row className={"justify-content-center"} sm={10}>
+               <h6><strong>Email: </strong>{this.props.email}</h6></Row>
+              <Row className={"justify-content-center"} sm={10}>
+              <h6><strong>Github: </strong>{this.props.github}</h6></Row>
             </Col>
           </CardText>
         </CardBody>

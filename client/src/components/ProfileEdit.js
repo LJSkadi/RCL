@@ -51,7 +51,7 @@ class ProfileEdit extends Component {
         <CardHeader className="CardHeader" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.props.name}</CardHeader>
         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
           <CardText className="text-center" style={{ padding: '10px 10px 10px 10px' }}>
-            <CardImg className="card-img-top" src={this.props.pictureUrl} alt="Card image cap" />
+            <CardImg className="card-img-top" src={this.props.pictureUrl} style={{ borderRadius: '10em', maxWidth: '20rem' }} alt="Card image cap" />
             <Form outline color="primary" onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
               <FormGroup row className="d-flex justify-content-center">
                 <Label for="name" sm={10}>Name</Label>

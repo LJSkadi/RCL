@@ -66,6 +66,7 @@ handleSaveClick(stateFieldValues, event) {
                 toEdit: false,
 
             })
+            this.componentDidMount()
             this.props.history.push("/")  // Redirect to the home page
         })
         .catch(err => console.log(err))
