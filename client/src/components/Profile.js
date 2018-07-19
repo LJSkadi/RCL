@@ -22,25 +22,25 @@ class Profile extends Component {
       pictureUrl: this.props.pictureUrl,
   
     })
+
   }
 
 
   render() {
     return (
       <Card className="Card" style={{ maxWidth: '40rem' }} >
-        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.props.name}</CardHeader>
-            <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
-            <CardText style={{ padding: '10px 10px 10px 10px' }}>
-            <CardImg className="card-img-top" style={{ borderRadius: '10em', maxWidth: '20rem' }} src={this.props.pictureUrl} alt="Card image cap" />
+                        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
+                        <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
+                            <CardText style={{ padding: '10px 10px 10px 10px' }}>
+                                <CardImg className="card-img-top" style={{ borderRadius: '10em', maxWidth: '20rem' }} src={this.props.pictureUrl} alt="Card image cap" />
             <Col className="d-flex justify-content-center flex-column">
-            <Row style={{margin: '10px 10px 10px 10px'}}><strong>Email:</strong> {this.props.email}</Row>
-
-            <Row style={{margin: '10px 10px 10px 10px'}}><strong>Github:</strong> {this.props.github}</Row>
+            <Row><strong>Email:</strong> {this.props.email}</Row>
+            <Row><strong>Github:</strong> {this.props.github}</Row>
             </Col>
           </CardText>
         </CardBody>
         <CardFooter className="CardFooter text-muted" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>
-            <Button outline color="success" onClick={this.props.handleSubmit}>Edit</Button><br />
+            <Button type="submit" outline color="success">Edit</Button><br />
         </CardFooter>
       </Card>
     );

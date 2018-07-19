@@ -26,13 +26,6 @@ export default {
       .catch(errHandler);
   },
 
-  // editUser(data) {
-  //   return service
-  //     .put('/users/profile', data)
-  //     .then(res => res.data)
-  //     .catch(errHandler);
-  // },
-
   editUser(data) {
     const formData = new FormData();
     formData.append("picture", data.picture)
