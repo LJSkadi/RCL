@@ -30,12 +30,18 @@ class Search extends Component {
   }
 
   updateSearch(event) {
-
+    let prevProps = this.state.searchTerm;
     this.setState({
       searchTerm: event.target.value,
     });
-
+    this.componentDidUpdate(prevProps)
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params !== this.props.match.params) {
+        this.componentDidMount()
+    }
+}
 
   render() {
     let filteredComponents = this.state.components.filter((component) => {

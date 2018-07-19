@@ -76,9 +76,9 @@ class Login extends Component {
             <Button onClick={this.handleClick}>Login</Button>
           </CardBody>
           <CardFooter
-            className="CardFooter text-muted"
+            className="CardFooter text-primary"
             style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>You don't have an account?<br />
-            <CardLink href="/signup">Sign up!</CardLink>
+            <CardLink href="/signup" >Sign up!</CardLink>
           </CardFooter>
         </Card>
       </Col>

@@ -6,10 +6,25 @@ const Component = require('../models/component');
 const passport = require('passport');
 const config = require('../configs/index');
 const bcrypt = require('bcrypt');
+const parser = require('body-parser');
 const uploadCloud = require('../configs/cloudinary.js');
 
 // // Bcrypt to encrypt passwords
 const bcryptSalt = 10;
+
+//#region DISPLAY PROFILE
+//GET /Profile
+router.get('/', passport.authenticate("jwt", config.jwtSession), (req, res, next) => {
+  User.find()
+    .then((usersList) => {
+      console.log(usersList)
+      res.json({
+        usersList
+      });
+    })
+    .catch(err => next(err));
+});
+//#endregion
 
 //#region DISPLAY PROFILE
 //GET /Profile
@@ -29,25 +44,13 @@ router.get('/profile', passport.authenticate("jwt", config.jwtSession), (req, re
 
 //#region EDIT PROFILE
 //POST /Profile
-router.put('/profile', [passport.authenticate("jwt", config.jwtSession), uploadCloud.single('photo')], (req, res, next) => {
+router.put('/profile', [passport.authenticate("jwt", config.jwtSession), uploadCloud.single('picture')], (req, res, next) => {
+  console.log("This is req.bodyand req.file", req.body, req.file)
   console.log("This is the User-ID:" + req.user._id)
-  const { pictureUrl, name } = req.body;
+  const { name, github } = req.body;
   const userId = req.user._id;
-  let password = "password";
-  let newImage = req.file ? req.file.secure_url : req.user.profileImage;
-  let updateInformation = {pictureUrl, name}
-  // Setting a new password
-    if (!bcrypt.compareSync(password, req.user.password)) {
-      const salt = bcrypt.genSaltSync(bcryptSalt);
-      const hashed = bcrypt.hashSync(password, salt);
-      User.findByIdAndUpdate(userId, { salt: salt, password: hashed })
-        .then(user => {
-          res.json({
-            user
-          });
-        })
-        .catch(err => next(err));
-    }
+  let pictureUrl = req.file ? req.file.url : req.user.profileImage;
+  let updateInformation = {pictureUrl, name, github}
 
   User.findByIdAndUpdate(userId, updateInformation, { new: true })
     .then(user => {

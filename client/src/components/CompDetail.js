@@ -1,13 +1,16 @@
 import React from 'react';
 import api from '../api';
 import { Link } from 'react-router-dom';
-import { Col, Card, CardImg, CardHeader, CardBody, CardText, Button } from 'reactstrap';
+import { Col, Row, Card, CardImg, CardHeader, CardBody, CardText, Button } from 'reactstrap';
 
 class CompDetail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            owned: false,
             bookmarked: false,
+            newSearch: false,
+            owner: "",
             id: "",
             name: "",
             githubRepo: "",
@@ -16,10 +19,11 @@ class CompDetail extends React.Component {
             tutorial: [],   //Array
             description: [], //Array
             license: "",
-            image: ""
+            image: "",
         }
-        this.handleDeleteClick = this.handleDeleteClick.bind(this)
+        
         this.handleBMClick = this.handleBMClick.bind(this)
+        this.handleBMDelete = this.handleBMDelete.bind(this)
     }
 
 
@@ -28,10 +32,10 @@ class CompDetail extends React.Component {
         let compId = this.props.match.params.id;
         api.getComponent(compId)
             .then(res => {
-                console.log(res.component._owner)
                 this.setState({
                     id: compId,
                     name: res.component.name,
+                    owner: res.component._owner,
                     repo: res.component.repo,
                     npmLink: res.component.npmLink,
                     hashtags: res.component.hashtags, //Array
@@ -50,18 +54,27 @@ class CompDetail extends React.Component {
                         }
                     })
                     .catch(err => console.log(err))
+                api.getUser()
+                    .then(res => {
+                        if (res.user._id == this.state.owner._id) {
+                            this.setState({ 
+                                owned: true 
+                            })
+                        }
+                    })
+                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
 
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.match.params.id !== this.props.match.params.id) {
+        if (prevProps.match.params !== this.props.match.params) {
             this.componentDidMount()
         }
     }
 
-    handleDeleteClick(event) {
+    handleEditClick(event) {
         let compId = this.state.id;
         api.deleteComponent(compId)
             .then(res => {
@@ -94,30 +107,30 @@ class CompDetail extends React.Component {
     }
 
     render() {
-        console.log("This is props in CompDetail", this.state.id)
-        let prevHost = this.props.prevHost;
         return (
             <div>
                 <Col className="d-flex justify-content-center">
                     <Card className="Card" style={{ maxWidth: '40rem' }} >
                         <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
                         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
-                            <CardText style={{ padding: '10px 10px 10px 10px'  }}>
-                            <CardImg className="card-img-top" style={{borderRadius: '10em' , maxWidth: '20rem'}} src={this.state.image} alt="Card image cap" />
+                            <CardText style={{ padding: '10px 10px 10px 10px' }}>
+                                <CardImg className="card-img-top" style={{ borderRadius: '10em', maxWidth: '20rem' }} src={this.state.image} alt="Card image cap" />
                                 <div className="text-left" >
-                                <div>Repository: <a className="welcome" target="_blank" href={this.state.repo}>{this.state.repo}</a></div>
-                                    {this.state.npmLink!==undefined && <div>npm-Link: <a className="welcome" target="_blank" href={this.state.npmLink}> {this.state.npmLink}</a></div>}
-                                    {this.state.docLink!==undefined && <div>Documentary: <a className="welcome" target="_blank" href={this.state.docLink}>{this.state.docLink}</a></div>}
-                                    {this.state.description!==[] && <div>Description: <p className="welcome">{this.state.description}</p></div>}
-                                    {this.state.tutorial!==undefined && <div>Tutorial: <p className="welcome">{this.state.tutorial}</p></div>}
-                                    {this.state.license!==undefined && <div>License: <p className="welcome">{this.state.license}</p></div>}
+                                    <div>Repository: <a className="welcome" target="_blank" href={this.state.repo}>{this.state.repo}</a></div>
+                                    {this.state.npmLink !== undefined && <div>npm-Link: <a className="welcome" target="_blank" href={this.state.npmLink}> {this.state.npmLink}</a></div>}
+                                    {this.state.docLink !== undefined && <div>Documentary: <a className="welcome" target="_blank" href={this.state.docLink}>{this.state.docLink}</a></div>}
+                                    {this.state.description !== [] && <div>Description: <p className="welcome">{this.state.description}</p></div>}
+                                    {this.state.tutorial !== undefined && <div>Tutorial: <p className="welcome">{this.state.tutorial}</p></div>}
+                                    {this.state.license !== undefined && <div>License: <p className="welcome">{this.state.license}</p></div>}
                                     <div>Hashtags: <p className="welcome"> {this.state.hashtags.map(tag => `${tag} `)}</p></div>
                                 </div>
                                 <div className="text-center" >
-                                    {prevHost && <Button outline color="primary"><Link to={`/comp/edit/${this.props.match.params.id}`}>Edit</Link></Button>}
-                                    {prevHost && <Button outline color="danger" onClick={this.handleDeleteClick}>Delete</Button>}
-                                    {!prevHost && !this.state.bookmarked && <Button outline color="primary" onClick={this.handleBMClick}>Bookmark</Button>}
-                                    {!prevHost && this.state.bookmarked && <Button outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
+                                    <Col >
+                                        <Row className="d-flex justify-content-center">
+                                            {!this.state.bookmarked && <Button style={{ margin: '10px 10px 10px 10px' }} outline color="primary" onClick={this.handleBMClick}>Bookmark</Button>}
+                                            {this.state.bookmarked && <Button style={{ margin: '10px 10px 10px 10px' }} outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
+                                        </Row>
+                                    </Col>
                                 </div>
                             </CardText>
                         </CardBody>
@@ -125,7 +138,16 @@ class CompDetail extends React.Component {
                 </Col>
             </div>
         )
-}
+    }
 }
 
 export default CompDetail;
+
+
+
+
+// if(this.props.location.pathname.includes("host")){
+//     this.setState({
+//         owned: true,
+//     })
+// }

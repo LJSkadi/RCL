@@ -11,6 +11,13 @@ const errHandler = err => {
 
 export default {
   service: service,
+
+  getUsers(){
+        return service
+      .get('/users/')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
   
   getUser() {
     return service
@@ -19,9 +26,24 @@ export default {
       .catch(errHandler);
   },
 
+  // editUser(data) {
+  //   return service
+  //     .put('/users/profile', data)
+  //     .then(res => res.data)
+  //     .catch(errHandler);
+  // },
+
   editUser(data) {
+    const formData = new FormData();
+    formData.append("picture", data.picture)
+    formData.append("github", data.github)
+    formData.append("name", data.name)
     return service
-      .put('/users/profile')
+      .put('/users/profile', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
       .then(res => res.data)
       .catch(errHandler);
   },

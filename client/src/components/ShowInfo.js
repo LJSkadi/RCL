@@ -43,7 +43,7 @@ class ShowInfo extends Component {
         return (
             <div>
             <Form outline color="primary" style={{margin: '10px 0 10px 0'}} onSubmit={(e) => this.props.handleSubmit(this.state, e)}>
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="repo" sm={10}>Repository</Label>
                     <Col sm={10}>
                         <Input
@@ -62,7 +62,7 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="npmLink" sm={10}>NPM</Label>
                     <Col sm={10}>
                         <Input
@@ -81,7 +81,7 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="docLink" sm={10}>Documentation-Link</Label>
                     <Col sm={10}>
                         <Input
@@ -100,7 +100,7 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup tag="fieldset" row>
+                <FormGroup tag="fieldset" row className="d-flex justify-content-center">
                         <Label for="tutorial"sm={10}>Does a tutorial exists?</Label>
                         <Col sm={10}>
                              <FormGroup check inline>
@@ -119,7 +119,7 @@ class ShowInfo extends Component {
                         </Col>
                     </FormGroup>
 
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="hashtags" sm={10}>Keywords</Label>
                     <Col sm={10}>
                         <Input
@@ -139,7 +139,7 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="description" sm={10}>Description</Label>
                     <Col sm={10}>
                         <Input
@@ -159,7 +159,7 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
 
-                <FormGroup row>
+                <FormGroup row className="d-flex justify-content-center">
                     <Label for="licence" sm={10}>License</Label>
                     <Col sm={10}>
                         <Input
@@ -180,7 +180,9 @@ class ShowInfo extends Component {
                     </Col>
                 </FormGroup>
                 Everything is correct?
-                <Button type="submit" >Save my Component</Button>
+                <Col>
+                <Button type="submit" >SUBMIT</Button>
+                </Col>
                 </Form>
                 </div>
                     )

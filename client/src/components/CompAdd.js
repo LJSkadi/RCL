@@ -103,7 +103,7 @@ class CompAdd extends Component {
         api.addComponent(data)
             .then(createdComponent => {
                 console.log("This is newComponent.id", createdComponent._id)
-                this.props.history.push(`/comp/${createdComponent._id}`)
+                this.props.history.push(`/host`)
             })
             .catch(err => console.log(err))
         console.log(this.state)

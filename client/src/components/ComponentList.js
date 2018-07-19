@@ -21,7 +21,7 @@ class ComponentList extends Component {
                             <tr>
                                     <td key={i} className="text-left">
                                     <img className="member-avatar" src={component._owner.pictureUrl} alt={`${component._owner.name}`}/>{' '}
-                                    <Link style = {{ color: '#00d8ff'}} to={`${pathBeginning}/${component._id}`} prevHost={this.props.prevHost} id={component._id}> {component.name} </Link>
+                                    <Link style = {{ color: '#00d8ff'}} to={`${pathBeginning}/${component._id}`} id={component._id}> {component.name} </Link>
                                     
                                     </td>
                             </tr>

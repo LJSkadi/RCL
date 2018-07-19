@@ -26,8 +26,8 @@ handleInput(event){
             <Container className="text-center">
                 {this.props.onNpm && <div>Under which name is the module or component published on NPM?</div>}
                 {!this.props.onNpm && <div>What is the name of the module or component?</div>}
+                <Form row className="d-flex justify-content-center" outline color="primary" onSubmit={(e) => this.props.handleInput(this.state.name, e)}>
                 <Col sm={10}>
-                <Form className="d-flex flex-column" outline color="primary" onSubmit={(e) => this.props.handleInput(this.state.name, e)}>
                     <Input
                         type="text"
                         name="name"
@@ -40,8 +40,8 @@ handleInput(event){
                         onChange={this.handleInput}
                     />
                <Button style={{margin: '20px 20px 20px 20px'}} type="submit" >Submit Name</Button>
-                </Form>
                 </Col>
+                </Form>
             </Container>
         )
     }
