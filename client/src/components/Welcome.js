@@ -72,6 +72,13 @@ handleSaveClick(stateFieldValues, event) {
         console.log(this.state)
 }
 
+handlehandleEditClick(){
+  this.setState({
+    toEdit: true,
+
+})
+}
+
   render() {
     return (
        <div>
