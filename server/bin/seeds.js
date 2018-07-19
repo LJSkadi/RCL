@@ -1,9 +1,15 @@
-const mongoose = require('mongoose');
+require('dotenv').config();
+
+const mongoose      = require('mongoose');
 const User = require('../models/user');
 const Component = require('../models/component');
 
 const dbName = 'RCL';
-mongoose.connect(`mongodb://localhost/${dbName}`);
+mongoose.connect( `${process.env.MONGODB_URI}` )
+.then( () => {
+  console.log( "Connected to MongoDB..." )
+})
+.catch( err => { throw err } );
 Component.collection.drop();
 User.collection.drop();
 
