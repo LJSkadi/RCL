@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import ComponentList from './ComponentList';
+import CompDetail from './CompDetail';
 import api from '../api';
+import { Col, Row } from 'reactstrap';
+import { Route, Link, Switch } from 'react-router-dom';
 
 
 class Search extends Component {
@@ -50,7 +53,14 @@ class Search extends Component {
     return (
       <div>
         <SearchBar components={this.state.components} onSearch={this.updateSearch} />
-        <ComponentList components={filteredComponents}/>
+        <Row>
+          <Col sm="6" className="order-sm-2">
+            <Route path="/search/:id" component={CompDetail} />
+          </Col>
+          <Col sm="6"  className="order-sm-1">
+            <ComponentList components={filteredComponents} pathBeginning="/search" />
+          </Col>
+        </Row>
       </div>
     )
   }

@@ -55,6 +55,12 @@ class CompDetail extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.componentDidMount()
+        }
+    }
+
     handleDeleteClick(event) {
         let compId = this.state.id;
         api.deleteComponent(compId)
@@ -93,11 +99,11 @@ class CompDetail extends React.Component {
         return (
             <div>
                 <Col className="d-flex justify-content-center">
-                    <Card className="Card" style={{ width: '20rem' }} >
+                    <Card className="Card" style={{ maxWidth: '40rem' }} >
                         <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>{this.state.name}</CardHeader>
                         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
-                            <CardText style={{ padding: '10px 10px 10px 10px' }}>
-                            <CardImg className="card-img-top" style={{borderRadius: '10em'}} src={this.state.image} alt="Card image cap" />
+                            <CardText style={{ padding: '10px 10px 10px 10px'  }}>
+                            <CardImg className="card-img-top" style={{borderRadius: '10em' , maxWidth: '20rem'}} src={this.state.image} alt="Card image cap" />
                                 <div className="text-left" >
                                 <div>Repository: <a className="welcome" target="_blank" href={this.state.repo}>{this.state.repo}</a></div>
                                     {this.state.npmLink!==undefined && <div>npm-Link: <a className="welcome" target="_blank" href={this.state.npmLink}> {this.state.npmLink}</a></div>}
