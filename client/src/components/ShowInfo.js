@@ -18,7 +18,7 @@ class ShowInfo extends Component {
             description: [],
             license: "",
         }
-        this.handleInput = this.handleInput.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
     componentDidMount() {
         this.setState({
@@ -34,7 +34,7 @@ class ShowInfo extends Component {
         }
 
 
-    handleInput(stateFieldName, event) {
+    handleChange(stateFieldName, event) {
         this.setState({
             [stateFieldName]: event.target.value,
         })
@@ -58,7 +58,7 @@ class ShowInfo extends Component {
                                 margin: '0 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("repo", e)}
                         />
                     </Col>
                 </FormGroup>
@@ -78,7 +78,7 @@ class ShowInfo extends Component {
                                 margin: '0 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("npmLink", e)}
                         />
                     </Col>
                 </FormGroup>
@@ -98,7 +98,7 @@ class ShowInfo extends Component {
                                 margin: '0 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("docLink", e)}
                         />
                     </Col>
                 </FormGroup>
@@ -137,7 +137,7 @@ class ShowInfo extends Component {
                                 margin: '0 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("hashtags", e)}
                         />
                         <FormText color="muted">Please enter at least one keyword</FormText>
                     </Col>
@@ -158,7 +158,7 @@ class ShowInfo extends Component {
                                 margin: '0 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("description", e)}
                         />
                         <FormText color="muted">Let us know, what your component does!</FormText>
                     </Col>
@@ -180,7 +180,7 @@ class ShowInfo extends Component {
                                 margin: '20 auto',
                                 maxWidth: 800
                             }}
-                            onChange={(e) => this.handleInput("name", e)}
+                            onChange={(e) => this.handleChange("license", e)}
                         />
                         
                     </Col>
