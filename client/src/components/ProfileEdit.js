@@ -56,7 +56,7 @@ class ProfileEdit extends Component {
               <FormGroup row className="d-flex justify-content-center">
                 <Label for="name" sm={10}>Name</Label>
                 <Col sm={10}>
-                  <Input valid
+                  <Input
                     name="name"
                     type="text"
                     style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
@@ -68,7 +68,7 @@ class ProfileEdit extends Component {
               <FormGroup row className="d-flex justify-content-center">
                 <Label for="github" sm={10}>Github-Profile</Label>
                 <Col sm={10}>
-                  <Input valid
+                  <Input
                     name="github"
                     type="text"
                     style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}

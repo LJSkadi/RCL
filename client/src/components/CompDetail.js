@@ -154,7 +154,7 @@ class CompDetail extends React.Component {
                                             {this.state.bookmarked && <Button style={{ margin: '10px 10px 10px 10px' }} outline color="primary" onClick={(e) => this.handleBMDelete(this.state.id, e)}>Delete Bookmark</Button>}
                                         </Row>
                                         <Row className="d-flex justify-content-center">
-                                        {this.state.owned && !this.state.toEdit && <EditBtn className="d-flex justify-content-center" handleEClick={this.handleEditClick} handleDClick={this.handleDeleteClick}/>}
+                                        {this.state.owned && !this.state.toEdit && <EditBtn className="d-flex justify-content-center" id={this.state.id} handleEClick={this.handleEditClick} handleDClick={this.handleDeleteClick}/>}
          
                                         </Row>
 

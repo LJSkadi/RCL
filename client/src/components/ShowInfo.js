@@ -53,6 +53,7 @@ class ShowInfo extends Component {
                             value={this.state.repo}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '0 auto',
                                 maxWidth: 800
@@ -72,6 +73,7 @@ class ShowInfo extends Component {
                             value={this.state.npmLink}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '0 auto',
                                 maxWidth: 800
@@ -91,6 +93,7 @@ class ShowInfo extends Component {
                             value={this.state.docLink}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '0 auto',
                                 maxWidth: 800
@@ -129,6 +132,7 @@ class ShowInfo extends Component {
                             value={this.state.hashtags}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '0 auto',
                                 maxWidth: 800
@@ -149,6 +153,7 @@ class ShowInfo extends Component {
                             value={this.state.description}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '0 auto',
                                 maxWidth: 800
@@ -170,6 +175,7 @@ class ShowInfo extends Component {
                             value={this.state.license}
                             style={{
                                 backgroundColor: '#3b3b3b',
+                                borderColor: '#00d8ff',
                                 color: 'white',
                                 margin: '20 auto',
                                 maxWidth: 800

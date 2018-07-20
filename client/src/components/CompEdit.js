@@ -23,6 +23,26 @@ class CompEdit extends Component {
         this.handleInfoSubmit = this.handleInfoSubmit.bind(this)
     }
 
+    componentDidMount() {
+        let compId = this.props.match.params.id;
+        api.getComponent(compId)
+            .then(res => {
+                this.setState({
+                    toEdit: false,
+                    id: compId,
+                    name: res.component.name,
+                    owner: res.component._owner,
+                    repo: res.component.repo,
+                    npmLink: res.component.npmLink,
+                    hashtags: res.component.hashtags, //Array
+                    tutorial: res.component.tutorial,   //Array
+                    description: res.component.description, //Array
+                    license: res.component.license,
+                    image: res.component._owner.pictureUrl,
+                })
+    })
+}
+
     handleInput(stateFieldName, event) {
         this.setState({
             [stateFieldName]: event.target.value,
@@ -68,8 +88,8 @@ class CompEdit extends Component {
             <div className="flex-column">
                 <Col className="d-flex justify-content-center">
                     <Card className="Card" style={{ width: '20rem' }} >
-                        <CardHeader className="CardHeader" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>
-                            <div>Please edit your Component!</div>
+                        <CardHeader className="CardHeader welcome" style={{ backgroundColor: '#3b3b3b', borderColor: '#808080' }}>
+                            <div>{this.state.name}</div>
                         </CardHeader>
                         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
                             <CardText className="text-center" style={{ padding: '10px 10px 10px 10px' }}>

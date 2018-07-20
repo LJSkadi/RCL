@@ -58,7 +58,7 @@ class Signup extends Component {
                 <FormGroup row className="d-flex justify-content-center">
                   <Label for="email" sm={10}>Email</Label>
                   <Col sm={10}>
-                    <Input valid
+                    <Input
                       type="text"
                       name="email"
                       style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
@@ -71,7 +71,7 @@ class Signup extends Component {
                 <FormGroup row className="d-flex justify-content-center">
                   <Label for="name" sm={10}>Name</Label>
                   <Col sm={10}>
-                    <Input valid
+                    <Input
                       type="text"
                       name="name"
                       style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
@@ -84,7 +84,7 @@ class Signup extends Component {
                 <FormGroup row className="d-flex justify-content-center">
                   <Label for="password" sm={10}>Password</Label>
                   <Col sm={10}>
-                    <Input valid
+                    <Input
                       type="password"
                       name="password"
                       style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
@@ -97,7 +97,7 @@ class Signup extends Component {
                 <FormGroup row className="d-flex justify-content-center">
                   <Label for="github" sm={10}>Github-Profile</Label>
                   <Col sm={10}>
-                    <Input valid
+                    <Input
                       type="url"
                       name="github"
                       style={{ backgroundColor: '#3b3b3b', color: 'white', borderColor: '#00d8ff' }}
