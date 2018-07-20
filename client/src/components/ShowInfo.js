@@ -170,7 +170,6 @@ class ShowInfo extends Component {
                         <Input
                             type="text"
                             name="license"
-                            id="license"
                             placeholder={this.props.license}
                             value={this.state.license}
                             style={{

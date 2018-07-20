@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import api from '../api';
 import {
   Col, Card, CardText, CardBody, Form,
@@ -120,4 +121,4 @@ class Signup extends Component {
   };
 }
 
-export default Signup;
+export default withRouter(Signup);

@@ -92,7 +92,7 @@ class CompEdit extends Component {
                         </CardHeader>
                         <CardBody className="text-center" color="secondary" style={{ backgroundColor: '#080808', borderColor: '#808080' }}>
                             <CardText className="text-center" style={{ padding: '10px 10px 10px 10px' }}>
-                                    <ShowInfo handleSubmit={this.props.handleEditSubmit}
+                                    <ShowInfo handleSubmit={(e) => this.handleEditSubmit(this.state, e)}
                                         name={this.state.name}
                                         repo={this.state.repo}
                                         npmLink={this.state.npmLink}
