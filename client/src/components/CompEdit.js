@@ -15,7 +15,7 @@ class CompEdit extends Component {
             docLink: "",
             hashtags: [],
             tutorial: "",
-            description: ["Please tell us a little bit more about your react component."],
+            description: [],
             license: "",
             message: ""
         }
