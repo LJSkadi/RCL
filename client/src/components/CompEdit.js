@@ -20,7 +20,7 @@ class CompEdit extends Component {
             message: ""
         }
         this.handleInput = this.handleInput.bind(this)
-        this.handleInfoSubmit = this.handleInfoSubmit.bind(this)
+        this.handleEditSubmit = this.handleEditSubmit.bind(this)
     }
 
     componentDidMount() {
@@ -49,7 +49,7 @@ class CompEdit extends Component {
         })
     }
 
-    handleInfoSubmit(stateFieldValues, event) {
+    handleEditSubmit(stateFieldValues, event) {
         event.preventDefault();
         let newState = {
             name: stateFieldValues.name,
@@ -80,7 +80,6 @@ class CompEdit extends Component {
             })
             .catch(err => console.log(err))
         console.log(this.state)
-        this.props.onClick();
     }
 
     render() {
