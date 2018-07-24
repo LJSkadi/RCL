@@ -22,3 +22,7 @@ You can add your own components. If your component is already a deployed NPM pac
 You can search through the component library by using the search by title or keywords and add interesting components as bookmarks.
 
 ![Search](https://res.cloudinary.com/dazh9innn/image/upload/v1532436245/Screen_Shot_2018-07-24_at_14.41.36.png)
+
+#### Structure
+
+The front-end is stored in the client folder and the back-end in the server folder. Both are connected through the api.js, which is included in the client folder. You can run the app locally by using the commands npm run dev:client and npm run dev:server. Please start the server first. For any additional questions, feel free to ask ;-)
